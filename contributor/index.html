@@ -378,6 +378,8 @@
       90% { opacity: 1; transform: translateY(0); }
       100% { opacity: 0; transform: translateY(-20px); }
     }
+    .notification.error { background: rgba(255, 91, 91, 0.2); border-color: rgba(255, 91, 91, 0.3); }
+    .notification.success { background: rgba(79, 199, 91, 0.2); border-color: rgba(79, 199, 91, 0.3); }
 
     /* ---------- small screens ---------- */
     @media (max-width: 880px) {
@@ -547,7 +549,7 @@
       canvas.height = window.innerHeight;
     });
 
-    // Endpoint (local server)
+    // Endpoint (local server in contributor directory)
     const API = 'http://localhost:3000/api/experts';
 
     // Helpers
@@ -560,9 +562,9 @@
       a.click();
       URL.revokeObjectURL(a.href);
     }
-    function showNotification(message) {
+    function showNotification(message, isError = false) {
       const notif = document.createElement('div');
-      notif.className = 'notification';
+      notif.className = 'notification ' + (isError ? 'error' : 'success');
       notif.textContent = message;
       document.body.appendChild(notif);
       setTimeout(() => notif.remove(), 3000);
@@ -658,7 +660,7 @@
       grid.innerHTML = '<div class="empty">Loading experts…</div>';
       try {
         const res = await fetch(API);
-        if (!res.ok) throw new Error('Failed to fetch');
+        if (!res.ok) throw new Error('Failed to fetch experts');
         const data = await res.json();
         currentData = Array.isArray(data) ? data : [];
         const stats = computeStats(currentData);
@@ -678,6 +680,7 @@
       } catch (e) {
         console.error(e);
         grid.innerHTML = '<div class="empty" style="color: tomato">Gagal memuat data.</div>';
+        showNotification('Failed to load experts: ' + e.message, true);
       }
     }
 
@@ -784,7 +787,10 @@
       const message = inpMessage.value.trim();
       const rating = selectedRating;
 
-      if (!name || !email) return alert('Nama dan email wajib diisi.');
+      if (!name || !email || !skills.length) {
+        showNotification('Nama, email, and skills are required!', true);
+        return;
+      }
 
       btnSubmit.disabled = true;
       btnSubmit.textContent = 'Saving...';
@@ -802,7 +808,7 @@
         showNotification('Expert saved successfully!');
       } catch (e) {
         console.error(e);
-        alert('Gagal menyimpan: ' + (e.message || 'error'));
+        showNotification('Failed to save expert: ' + e.message, true);
       } finally {
         btnSubmit.disabled = false;
         btnSubmit.textContent = 'Save Expert';
