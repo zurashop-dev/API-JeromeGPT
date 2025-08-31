@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JeromeGPT API's — Meet Our Experts</title>
+  <meta name="description" content="JeromeGPT API - Meet our experts, rating, and contributions" />
+  <style>
+    /* ---------- Theme / Reset ---------- */
+    :root {
+      --bg-0: #05060a;
+      --bg-1: #071029;
+      --panel: #081224;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-2: rgba(255, 255, 255, 0.02);
+      --muted: #b9c6d9;
+      --accent: #6c7bff;
+      --accent-2: #ff6b6b; /* red for dashboard button */
+      --neon: #7df9ff;
+      --card-border: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(2, 6, 12, 0.6);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    html, body { height: 100% }
+    body {
+      background: linear-gradient(180deg, var(--bg-0), var(--bg-1));
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-bottom: 60px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 18px 28px;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      z-index: 50;
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .dash-btn {
+      background: linear-gradient(180deg, var(--accent-2), #ff3b3b);
+      color: white;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dash-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 91, 91, 0.2);
+    }
+    .dash-btn svg { filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5)) }
+
+    /* ---------- Container ---------- */
+    .wrap {
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+    .head {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    h1 {
+      font-size: 30px;
+      letter-spacing: 0.4px;
+      margin: 0;
+      text-shadow: 0 0 10px rgba(108, 123, 255, 0.3);
+    }
+    .subtitle { color: var(--muted); font-size: 14px }
+
+    /* ---------- Controls ---------- */
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: inset 0 -6px 24px rgba(2, 6, 12, 0.6);
+      transition: box-shadow 0.3s ease;
+    }
+    .search:hover {
+      box-shadow: inset 0 -8px 28px rgba(2, 6, 12, 0.8);
+    }
+    .search input {
+      background: transparent;
+      border: 0;
+      outline: none;
+      color: inherit;
+      width: 220px;
+      font-size: 14px;
+    }
+    .select, .small-btn {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .select:hover, .small-btn:hover {
+      background: var(--glass-2);
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, var(--accent), #4f63ff);
+      color: white;
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(79, 99, 255, 0.2);
+    }
+
+    /* ---------- Stats ---------- */
+    .stats {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .stat {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      font-size: 13px;
+      color: var(--muted);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    /* ---------- Grid ---------- */
+    .card-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--card-border);
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      animation: cardFadeIn 0.5s ease-out;
+    }
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 60px rgba(2, 6, 12, 0.6) }
+    .initial {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #0f172a, #122033);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      margin: 0 auto 10px;
+      color: var(--neon);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 18px rgba(100, 200, 255, 0.03) inset;
+      text-shadow: 0 0 5px var(--neon);
+    }
+    .name { text-align: center; font-weight: 800; font-size: 18px }
+    .email { text-align: center; color: var(--muted); font-size: 13px; margin-top: 6px }
+    .message { text-align: center; color: var(--muted); font-size: 13px; margin: 12px 6px 10px }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 6px }
+    .tag { font-size: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.02); color: var(--muted) }
+
+    /* ---------- Rating ---------- */
+    .rating-row { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 8px }
+    .stars { display: inline-flex; gap: 6px; align-items: center; justify-content: center }
+    .star { width: 18px; height: 18px; cursor: default; transition: transform 0.12s ease }
+    .star:hover { transform: translateY(-4px) scale(1.05) }
+
+    /* ---------- Card actions ---------- */
+    .card-actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px }
+    .action {
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .action:hover { background: var(--glass-2) }
+    .badge-top {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffe39b, #ffd166);
+      color: #10202a;
+      font-weight: 700;
+      text-shadow: 0 0 5px rgba(255, 210, 102, 0.5);
+    }
+
+    /* ---------- Empty / error ---------- */
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      grid-column: 1 / -1;
+      padding: 30px 0;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    /* ---------- Modal ---------- */
+    .modal-root {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      background: linear-gradient(180deg, rgba(3, 6, 12, 0.6), rgba(3, 6, 12, 0.55));
+      backdrop-filter: blur(5px);
+    }
+    .modal {
+      width: 100%;
+      max-width: 840px;
+      border-radius: 14px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 80px rgba(1, 6, 12, 0.7);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-grid { display: grid; grid-template-columns: 1fr 240px; gap: 12px }
+    .form-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px }
+    label { font-size: 13px; color: var(--muted); margin-bottom: 6px; display: block }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: transparent;
+      color: inherit;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(108, 123, 255, 0.3);
+    }
+    textarea { min-height: 120px; resize: vertical }
+    .modal-right {
+      border-left: 1px solid rgba(255, 255, 255, 0.02);
+      padding-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rating-input { display: flex; gap: 8px; align-items: center }
+    .rating-input .star-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .rating-input .star-btn:hover {
+      transform: scale(1.1);
+      background: var(--glass-2);
+    }
+
+    .modal-foot { display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px }
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .ghost:hover { background: var(--glass-2) }
+
+    /* ---------- Notifications ---------- */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      color: #fff;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: notify 3s ease-out forwards;
+    }
+    @keyframes notify {
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+
+    /* ---------- small screens ---------- */
+    @media (max-width: 880px) {
+      .modal-grid { grid-template-columns: 1fr }
+      .title-block { text-align: center }
+      header { justify-content: center }
+      .head { flex-direction: column; gap: 15px }
+      .controls { justify-content: center }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <header>
+    <a class="dash-btn" href="/dashboard" title="Kembali ke dashboard">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M10 19l-7-7 7-7" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 12h18" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      KEMBALI KE DASHBOARD
+    </a>
+  </header>
+
+  <main class="wrap">
+    <div class="head">
+      <div class="title-block">
+        <h1>Meet Our Experts</h1>
+        <div class="subtitle">Kontributor & pengembang yang berkontribusi pada JeromeGPT API's</div>
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="Controls">
+        <div class="search" title="Cari nama, email, atau skill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="q" placeholder="Search name, email or skill..." />
+        </div>
+
+        <select id="skillFilter" class="select" title="Filter by skill">
+          <option value="">All skills</option>
+        </select>
+
+        <select id="sortBy" class="select" title="Sort">
+          <option value="rating_desc">Rating: High → Low</option>
+          <option value="rating_asc">Rating: Low → High</option>
+          <option value="name_asc">Name: A → Z</option>
+        </select>
+
+        <button class="btn-primary" id="btnAdd">+ Add Expert</button>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px">
+      <div class="stats" style="flex: 1">
+        <div class="stat" id="totalCount">Total experts: —</div>
+        <div class="stat" id="avgRating">Avg rating: —</div>
+        <div class="stat" id="topSkill">Top skill: —</div>
+      </div>
+
+      <div style="display: flex; gap: 8px">
+        <button class="small-btn" id="btnExport">Export JSON</button>
+        <button class="small-btn" id="btnRefresh">Refresh</button>
+      </div>
+    </div>
+
+    <section class="card-grid" id="grid">
+      <div class="empty">Loading experts…</div>
+    </section>
+  </main>
+
+  <div class="modal-root" id="modalRoot" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
+        <h3 id="modalTitle">Add New Expert</h3>
+        <button class="ghost" id="closeModal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-grid">
+        <div>
+          <label>Name</label>
+          <input id="inpName" type="text" placeholder="Nama lengkap" />
+
+          <label style="margin-top: 8px">Email</label>
+          <input id="inpEmail" type="email" placeholder="email@domain.com" />
+
+          <label style="margin-top: 8px">Keahlian (pisahkan dengan koma)</label>
+          <input id="inpSkills" type="text" placeholder="Web Scraping, JavaScript, Automation" />
+
+          <label style="margin-top: 8px">Pesan / Bio</label>
+          <textarea id="inpMessage" placeholder="Deskripsi singkat..."></textarea>
+        </div>
+
+        <div class="modal-right">
+          <div>
+            <label>Rating</label>
+            <div class="rating-input" id="ratingInput"></div>
+            <div style="color: var(--muted); font-size: 13px; margin-top: 6px">Klik bintang untuk memilih rating (1–5).</div>
+          </div>
+
+          <div style="margin-top: 6px">
+            <label>Preview Card</label>
+            <div style="background: var(--glass-2); padding: 10px; border-radius: 10px; border: 1px solid var(--glass-border)">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+                <div id="previewInitial" class="initial">U</div>
+                <div id="previewName" class="name">Nama</div>
+                <div id="previewEmail" class="email">email@domain</div>
+                <div id="previewMsg" class="message">Pesan singkat...</div>
+                <div id="previewTags" class="tags"></div>
+                <div id="previewStars" class="rating-row"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: auto">
+            <label>Actions</label>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button id="btnSubmit" class="btn-primary">Save Expert</button>
+              <button id="btnCancel" class="ghost">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot"></div>
+    </div>
+  </div>
+
+  <script>
+    // Particle animation
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let particle of particles) {
+        particle.update();
+        particle.draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Endpoint (local server)
+    const API = 'http://localhost:3000/api/experts';
+
+    // Helpers
+    const el = id => document.getElementById(id);
+    function escapeHtml(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
+    function downloadFile(filename, content) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([content], { type: 'application/json' }));
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function showNotification(message) {
+      const notif = document.createElement('div');
+      notif.className = 'notification';
+      notif.textContent = message;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 3000);
+    }
+
+    // UI refs
+    const grid = el('grid');
+    const q = el('q');
+    const skillFilter = el('skillFilter');
+    const sortBy = el('sortBy');
+    const totalCount = el('totalCount');
+    const avgRating = el('avgRating');
+    const topSkill = el('topSkill');
+    const btnExport = el('btnExport');
+    const btnRefresh = el('btnRefresh');
+    const btnAdd = el('btnAdd');
+
+    // Modal refs
+    const modalRoot = el('modalRoot');
+    const closeModal = el('closeModal');
+    const btnCancel = el('btnCancel');
+    const btnSubmit = el('btnSubmit');
+    const inpName = el('inpName');
+    const inpEmail = el('inpEmail');
+    const inpSkills = el('inpSkills');
+    const inpMessage = el('inpMessage');
+    const previewInitial = el('previewInitial');
+    const previewName = el('previewName');
+    const previewEmail = el('previewEmail');
+    const previewMsg = el('previewMsg');
+    const previewTags = el('previewTags');
+    const previewStars = el('previewStars');
+    const ratingInput = el('ratingInput');
+
+    let selectedRating = 0;
+    let currentData = [];
+
+    // Create star SVG
+    function starSVG(filled = false, size = 18) {
+      if (filled) return `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="#ffd166"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.8 5.658 1.37 8.005L12 18.896 4.83 23.412 6.2 15.407 0.4 9.75l7.932-1.732z"/></svg>`;
+      return `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" style="color: rgba(255, 255, 255, 0.18)"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" stroke-width="0.9"/></svg>`;
+    }
+
+    // Render card element
+    function renderCard(ex) {
+      const container = document.createElement('div');
+      container.className = 'card';
+      const topBadge = ex.rating >= 5 ? '<div class="badge-top">TOP</div>' : '';
+      const skills = (ex.skills || []).slice(0, 6);
+      const stars = [1, 2, 3, 4, 5].map(i => i <= ex.rating ? starSVG(true) : starSVG(false)).join('');
+      container.innerHTML = `
+        ${topBadge}
+        <div>
+          <div class="initial">${escapeHtml((ex.initial || (ex.name || 'U')[0] || 'U').toUpperCase())}</div>
+          <div class="name">${escapeHtml(ex.name)}</div>
+          <div class="email">${escapeHtml(ex.email)}</div>
+          <div class="message">${escapeHtml(ex.message || '')}</div>
+        </div>
+        <div>
+          <div class="tags">${skills.map(s => `<div class="tag">${escapeHtml(s)}</div>`).join('')}</div>
+          <div class="rating-row">
+            <div class="stars">${stars}</div>
+          </div>
+          <div class="card-actions">
+            <button class="action" data-email="${escapeHtml(ex.email)}">Copy Email</button>
+            <a class="action" href="mailto:${encodeURIComponent(ex.email)}">Send Mail</a>
+          </div>
+        </div>
+      `;
+      const copyBtn = container.querySelector('.action');
+      copyBtn?.addEventListener('click', e => {
+        const em = e.currentTarget.dataset.email || '';
+        navigator.clipboard?.writeText(em).then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy Email', 1200);
+        }).catch(() => alert('Gagal copy email'));
+      });
+      return container;
+    }
+
+    // Compute stats
+    function computeStats(data) {
+      const total = data.length;
+      const avg = (data.reduce((s, x) => s + (Number(x.rating) || 0), 0) / Math.max(1, total));
+      const freq = {};
+      data.forEach(d => (d.skills || []).forEach(s => { if (!s) return; freq[s] = (freq[s] || 0) + 1 }));
+      const top = Object.entries(freq).sort((a, b) => b[1] - a[1])[0];
+      return { total, avg: (Math.round(avg * 10) / 10).toFixed(1), topSkill: top ? top[0] : '—', skills: Object.keys(freq).sort() };
+    }
+
+    // Load experts from API and render
+    async function loadExperts() {
+      grid.innerHTML = '<div class="empty">Loading experts…</div>';
+      try {
+        const res = await fetch(API);
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        currentData = Array.isArray(data) ? data : [];
+        const stats = computeStats(currentData);
+        totalCount.textContent = `Total experts: ${stats.total}`;
+        avgRating.textContent = `Avg rating: ${stats.avg}`;
+        topSkill.textContent = `Top skill: ${stats.topSkill}`;
+
+        skillFilter.innerHTML = '<option value="">All skills</option>';
+        stats.skills.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s;
+          opt.textContent = s;
+          skillFilter.appendChild(opt);
+        });
+
+        applyAndRender();
+      } catch (e) {
+        console.error(e);
+        grid.innerHTML = '<div class="empty" style="color: tomato">Gagal memuat data.</div>';
+      }
+    }
+
+    // Filter / sort / search then render
+    function applyAndRender() {
+      let data = [...currentData];
+      const qv = q.value.trim().toLowerCase();
+      const skill = skillFilter.value;
+      const sort = sortBy.value;
+
+      if (qv) {
+        data = data.filter(d => {
+          const hay = (d.name + ' ' + (d.email || '') + ' ' + (d.message || '') + ' ' + (d.skills || []).join(' ')).toLowerCase();
+          return hay.includes(qv);
+        });
+      }
+      if (skill) {
+        data = data.filter(d => (d.skills || []).map(s => s.toLowerCase()).includes(skill.toLowerCase()));
+      }
+
+      if (sort === 'rating_desc') data.sort((a, b) => (Number(b.rating) || 0) - (Number(a.rating) || 0));
+      else if (sort === 'rating_asc') data.sort((a, b) => (Number(a.rating) || 0) - (Number(b.rating) || 0));
+      else if (sort === 'name_asc') data.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+
+      grid.innerHTML = '';
+      if (!data.length) {
+        grid.innerHTML = '<div class="empty">Tidak ada expert yang cocok.</div>';
+        return;
+      }
+      data.forEach(ex => grid.appendChild(renderCard(ex)));
+    }
+
+    // Modal rating input rendering
+    function renderRatingInputs() {
+      ratingInput.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.createElement('div');
+        btn.className = 'star-btn';
+        btn.innerHTML = i <= selectedRating ? starSVG(true, 20) : starSVG(false, 20);
+        btn.dataset.val = i;
+        btn.addEventListener('click', () => {
+          selectedRating = i;
+          updatePreview();
+          renderRatingInputs();
+        });
+        btn.addEventListener('mouseover', () => {
+          const nodes = ratingInput.querySelectorAll('.star-btn');
+          nodes.forEach((n, idx) => n.innerHTML = idx < i ? starSVG(true, 20) : starSVG(false, 20));
+        });
+        btn.addEventListener('mouseout', () => renderRatingInputs());
+        ratingInput.appendChild(btn);
+      }
+    }
+
+    // Preview update
+    function updatePreview() {
+      const name = inpName.value.trim() || 'Nama';
+      const email = inpEmail.value.trim() || 'email@domain';
+      const msg = inpMessage.value.trim() || 'Pesan singkat...';
+      const skills = inpSkills.value.split(',').map(s => s.trim()).filter(Boolean);
+      previewInitial.textContent = (name[0] || 'U').toUpperCase();
+      previewName.textContent = name;
+      previewEmail.textContent = email;
+      previewMsg.textContent = msg;
+      previewTags.innerHTML = skills.slice(0, 6).map(s => `<div class="tag">${escapeHtml(s)}</div>`).join('');
+      previewStars.innerHTML = `<div class="stars">${[1, 2, 3, 4, 5].map(i => i <= selectedRating ? starSVG(true) : starSVG(false)).join('')}</div>`;
+    }
+
+    // Open / close modal
+    function openModal() {
+      modalRoot.style.display = 'flex';
+      modalRoot.setAttribute('aria-hidden', 'false');
+      selectedRating = 0;
+      inpName.value = ''; inpEmail.value = ''; inpSkills.value = ''; inpMessage.value = '';
+      renderRatingInputs();
+      updatePreview();
+    }
+    function closeModalFn() {
+      modalRoot.style.display = 'none';
+      modalRoot.setAttribute('aria-hidden', 'true');
+    }
+
+    // Event handlers
+    q.addEventListener('input', applyAndRender);
+    skillFilter.addEventListener('change', applyAndRender);
+    sortBy.addEventListener('change', applyAndRender);
+    btnRefresh.addEventListener('click', loadExperts);
+    btnAdd.addEventListener('click', openModal);
+    closeModal.addEventListener('click', closeModalFn);
+    btnCancel.addEventListener('click', closeModalFn);
+
+    [inpName, inpEmail, inpMessage, inpSkills].forEach(i => i.addEventListener('input', updatePreview));
+
+    btnExport.addEventListener('click', () => {
+      const exportData = currentData;
+      downloadFile('experts-export.json', JSON.stringify(exportData, null, 2));
+      showNotification('Data exported successfully!');
+    });
+
+    btnSubmit.addEventListener('click', async () => {
+      const name = inpName.value.trim();
+      const email = inpEmail.value.trim();
+      const skills = inpSkills.value.split(',').map(s => s.trim()).filter(Boolean);
+      const message = inpMessage.value.trim();
+      const rating = selectedRating;
+
+      if (!name || !email) return alert('Nama dan email wajib diisi.');
+
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Saving...';
+
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, skills, message, rating })
+        });
+        const j = await res.json();
+        if (!res.ok) throw new Error(j.error || 'Save failed');
+        await loadExperts();
+        closeModalFn();
+        showNotification('Expert saved successfully!');
+      } catch (e) {
+        console.error(e);
+        alert('Gagal menyimpan: ' + (e.message || 'error'));
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Save Expert';
+      }
+    });
+
+    // Init
+    renderRatingInputs();
+    loadExperts();
+  </script>
+</body>
+</html>
