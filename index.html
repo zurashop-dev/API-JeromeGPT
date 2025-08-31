@@ -1,1 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading — API JeromeGPT</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      color: #00f6ff;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 15px #00f6ff, 0 0 30px #00f6ff;
+      margin: 0;
+      animation: pulse 2s infinite;
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: #a5f3fc;
+      border-right: 2px solid #00f6ff;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 250px }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 15px #00f6ff, 0 0 30px #00f6ff; }
+      50% { text-shadow: 0 0 25px #00c4ff, 0 0 50px #00c4ff; }
+    }
+
+    /* Background particle effect */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #00f6ff;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: move 10s linear infinite;
+    }
+
+    @keyframes move {
+      from { transform: translateY(100vh); opacity: 0; }
+      to { transform: translateY(-10vh); opacity: 1; }
+    }
+
+    /* Hexagon loader */
+    .hex-loader {
+      margin: 40px auto 20px;
+      width: 70px;
+      height: 60px;
+      position: relative;
+    }
+
+    .hex {
+      width: 70px;
+      height: 60px;
+      background: transparent;
+      position: absolute;
+      left: 0;
+      top: 0;
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%);
+      border: 3px solid #00f6ff;
+      box-shadow: 0 0 15px #00f6ff;
+      animation: spin 2.5s linear infinite;
+    }
+
+    .hex::before, .hex::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid #00f6ff;
+      clip-path: inherit;
+      top: 0;
+      left: 0;
+      opacity: 0.5;
+    }
+
+    .hex::before {
+      transform: scale(0.85);
+      animation: pulseHex 2s ease-in-out infinite;
+    }
+
+    .hex::after {
+      transform: scale(1.15);
+      animation: pulseHex 2s ease-in-out infinite reverse;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseHex {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles"></div>
+  <div class="container">
+    <div class="hex-loader">
+      <div class="hex"></div>
+    </div>
+    <h1>API JeromeGPT</h1>
+    <div class="typing">Initializing API Services...</div>
+  </div>
+
+  <script>
+    // Generate random background particles
+    const particlesContainer = document.querySelector('.particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDuration = (5 + Math.random() * 10) + 's';
+      particle.style.opacity = Math.random();
+      particle.style.width = particle.style.height = Math.random() * 3 + 2 + 'px';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Redirect after 3 seconds
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 5000);
+  </script>
+</body>
+</html>
