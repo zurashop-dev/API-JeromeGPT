@@ -8,23 +8,22 @@ const dataFile = path.join(__dirname, 'experts.json');
 
 app.use(express.json());
 
-// Initialize data file if it doesn't exist
-async function initializeData() {
-  try {
-    await fs.access(dataFile);
-  } catch {
-    await fs.writeFile(dataFile, JSON.stringify([], null, 2));
-  }
-}
-
-// Middleware to handle CORS for local development
+// CORS for local development
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.sendStatus(200);
   next();
 });
+
+async function initializeData() {
+  try {
+    await fs.access(dataFile);
+  } catch {
+    await fs.writeFile(dataFile, JSON.stringify([], null, 2), 'utf8');
+  }
+}
 
 app.get('/api/experts', async (req, res) => {
   try {
@@ -39,16 +38,16 @@ app.get('/api/experts', async (req, res) => {
 app.post('/api/experts', async (req, res) => {
   try {
     const { name, email, skills, message, rating } = req.body;
-    if (!name || !email || !skills || !rating) {
-      return res.status(400).json({ error: 'Missing required fields: name, email, skills, or rating' });
+    if (!name || !email || !Array.isArray(skills) || !Number.isInteger(rating)) {
+      return res.status(400).json({ error: 'Missing or invalid fields: name, email, skills, or rating' });
     }
-    if (rating < 1 || rating > 5) {
-      return res.status(400).json({ error: 'Rating must be between 1 and 5' });
-    }
-    const newExpert = { name, email, skills, message, rating, initial: name[0].toUpperCase() };
-    const data = JSON.parse(await fs.readFile(dataFile, 'utf8'));
+    if (rating < 1 || rating > 5) return res.status(400).json({ error: 'Rating must be between 1 and 5' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Invalid email format' });
+
+    const newExpert = { name, email, skills: skills.filter(s => s.trim()), message: message || '', rating, initial: name[0].toUpperCase() };
+    let data = JSON.parse(await fs.readFile(dataFile, 'utf8'));
     data.push(newExpert);
-    await fs.writeFile(dataFile, JSON.stringify(data, null, 2));
+    await fs.writeFile(dataFile, JSON.stringify(data, null, 2), 'utf8');
     res.status(201).json(newExpert);
   } catch (err) {
     console.error('Error saving expert:', err);
@@ -57,9 +56,5 @@ app.post('/api/experts', async (req, res) => {
 });
 
 initializeData().then(() => {
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
-}).catch(err => {
-  console.error('Server initialization failed:', err);
-});
+  app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+}).catch(err => console.error('Server initialization failed:', err));
