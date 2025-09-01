@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Jerome - Community",
+    "email": "jeromegpt12@gmail.com",
+    "skills": ["Marketing", "Leadership"],
+    "message": "Developer, pemasar, dan CEO yang mengelola pengembangan API.",
+    "rating": 5,
+    "initial": "JC"
+  },
+  {
+    "name": "Refly Mukudori",
+    "email": "refly@gmail.com",
+    "skills": ["Cloudflare", "DDoS Mitigation", "Security"],
+    "message": "Mengelola dan mengembangkan solusi untuk Cloudflare.",
+    "rating": 5,
+    "initial": "R"
+  },
+  {
+    "name": "Yanzdev",
+    "email": "yanz@gmail.com",
+    "skills": ["Web Scraping", "JavaScript", "Automation"],
+    "message": "Menyumbang beberapa scraper untuk API.",
+    "rating": 4,
+    "initial": "Y"
+  }
+]
