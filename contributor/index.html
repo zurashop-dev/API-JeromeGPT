@@ -72,6 +72,7 @@
       border-radius: 10px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(79, 99, 255, 0.2); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
     .stats { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
     .stat {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)); padding: 10px 12px;
@@ -174,7 +175,6 @@
       KEMBALI KE DASHBOARD
     </a>
   </header>
-
   <main class="wrap">
     <div class="head">
       <div class="title-block">
@@ -212,7 +212,6 @@
       <div class="empty">Loading experts…</div>
     </section>
   </main>
-
   <div class="modal-root" id="modalRoot" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
@@ -261,7 +260,6 @@
       <div class="modal-foot"></div>
     </div>
   </div>
-
   <script>
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
@@ -273,8 +271,8 @@
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
         this.color = `hsl(${Math.random() * 360}, 70%, 50%)`;
       }
       update() {
@@ -285,15 +283,18 @@
       }
       draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
     }
-    for (let i = 0; i < 100; i++) particles.push(new Particle());
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let particle of particles) { particle.update(); particle.draw(); }
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
-    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles.forEach(p => { p.x = Math.random() * canvas.width; p.y = Math.random() * canvas.height; });
+    });
     const el = id => document.getElementById(id);
     function escapeHtml(s) { return s ? String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])) : ''; }
     function downloadFile(filename, content) {
@@ -310,14 +311,12 @@
       document.body.appendChild(notif);
       setTimeout(() => notif.remove(), 3000);
     }
-
     // GitHub configuration
-    const GITHUB_TOKEN = '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'; // Replace with your GitHub PAT
-    const OWNER = 'zurashop-dev'; // Replace with your GitHub username
-    const REPO = 'API-JeromeGPT'; // Replace with your repository name
-    const PATH = 'database/rating.json'; // Path to rating.json
-    const BRANCH = 'main'; // Branch name
-
+    const GITHUB_TOKEN = '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';
+    const OWNER = 'zurashop-dev';
+    const REPO = 'API-JeromeGPT';
+    const PATH = 'database/rating.json';
+    const BRANCH = 'main';
     // Element references
     const grid = el('grid'),
           q = el('q'),
@@ -330,7 +329,7 @@
           btnRefresh = el('btnRefresh'),
           btnAdd = el('btnAdd'),
           modalRoot = el('modalRoot'),
-          closeModal = el('closeModal'),
+          closeModalBtn = el('closeModal'),
           btnCancel = el('btnCancel'),
           btnSubmit = el('btnSubmit'),
           inpName = el('inpName'),
@@ -344,73 +343,108 @@
           previewTags = el('previewTags'),
           previewStars = el('previewStars'),
           ratingInput = el('ratingInput');
-
     let selectedRating = 0,
         currentData = [];
-
     function starSVG(filled = false, size = 18) {
       return filled ? `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="#ffd166"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.8 5.658 1.37 8.005L12 18.896 4.83 23.412 6.2 15.407 0.4 9.75l7.932-1.732z"/></svg>` :
                       `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" style="color: rgba(255, 255, 255, 0.18)"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" stroke-width="0.9"/></svg>`;
     }
-
+    // Helper functions for base64 encoding/decoding
+    function base64Decode(str) {
+      try {
+        const binaryString = atob(str);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        return new TextDecoder().decode(bytes);
+      } catch (e) {
+        console.error('Base64 decode error:', e);
+        return '';
+      }
+    }
+    function base64Encode(str) {
+      try {
+        const bytes = new TextEncoder().encode(str);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binary);
+      } catch (e) {
+        console.error('Base64 encode error:', e);
+        return '';
+      }
+    }
     async function getFileSha() {
-      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-      });
-      if (response.status === 404) return null; // File does not exist
-      if (!response.ok) throw new Error('Failed to get file SHA');
-      const data = await response.json();
-      return data.sha;
+      try {
+        const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+        if (response.status === 404) return null;
+        if (!response.ok) throw new Error(`Failed to get file SHA: ${response.statusText}`);
+        const data = await response.json();
+        return data.sha;
+      } catch (e) {
+        console.error('Get SHA error:', e);
+        throw e;
+      }
     }
-
     async function getRatingData() {
-      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-      });
-      if (response.status === 404) return []; // Return empty array if file not found
-      if (!response.ok) throw new Error('Failed to fetch rating data');
-      const data = await response.json();
-      const content = Buffer.from(data.content, 'base64').toString('utf-8');
-      return JSON.parse(content);
+      try {
+        const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+        if (response.status === 404) return [];
+        if (!response.ok) throw new Error(`Failed to fetch rating data: ${response.statusText}`);
+        const data = await response.json();
+        const content = base64Decode(data.content);
+        return JSON.parse(content);
+      } catch (e) {
+        console.error('Get rating data error:', e);
+        throw e;
+      }
     }
-
     async function updateRatingData(newData) {
-      const sha = await getFileSha();
-      const content = Buffer.from(JSON.stringify(newData, null, 2)).toString('base64');
-      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
-      const body = {
-        message: `Update ${PATH} at ${new Date().toISOString()}`,
-        content,
-        branch: BRANCH
-      };
-      if (sha) body.sha = sha;
-
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      });
-      if (!response.ok) throw new Error('Failed to update rating data');
-      return await response.json();
+      try {
+        const sha = await getFileSha();
+        const content = base64Encode(JSON.stringify(newData, null, 2));
+        const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
+        const body = {
+          message: `Update ${PATH} at ${new Date().toISOString()}`,
+          content,
+          branch: BRANCH,
+          ...(sha ? { sha } : {})
+        };
+        const response = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        if (!response.ok) throw new Error(`Failed to update rating data: ${response.statusText}`);
+        return await response.json();
+      } catch (e) {
+        console.error('Update rating data error:', e);
+        throw e;
+      }
     }
-
     function renderCard(ex) {
       const container = document.createElement('div');
       container.className = 'card';
@@ -426,7 +460,6 @@
       });
       return container;
     }
-
     function computeStats(data) {
       const total = data.length;
       const avg = total ? (data.reduce((s, x) => s + (Number(x.rating) || 0), 0) / total).toFixed(1) : '—';
@@ -434,7 +467,6 @@
       const topSkill = Object.entries(freq).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
       return { total, avg, topSkill, skills: Object.keys(freq).sort() };
     }
-
     async function loadExperts() {
       grid.innerHTML = '<div class="empty">Loading experts…</div>';
       try {
@@ -444,21 +476,24 @@
         avgRating.textContent = `Avg rating: ${stats.avg}`;
         topSkill.textContent = `Top skill: ${stats.topSkill}`;
         skillFilter.innerHTML = '<option value="">All skills</option>';
-        stats.skills.forEach(s => { const opt = document.createElement('option'); opt.value = s; opt.textContent = s; skillFilter.appendChild(opt); });
+        stats.skills.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s;
+          opt.textContent = s;
+          skillFilter.appendChild(opt);
+        });
         applyAndRender();
       } catch (e) {
         console.error('Load error:', e);
         grid.innerHTML = '<div class="empty" style="color: tomato">Failed to load experts. Check GitHub token or network.</div>';
-        showNotification('Failed to load experts: ' + e.message, true);
+        showNotification('Failed to load experts: ' + (e.message || 'Unknown error'), true);
       }
     }
-
     function applyAndRender() {
       let data = [...currentData];
       const qv = q.value.trim().toLowerCase();
       const skill = skillFilter.value;
       const sort = sortBy.value;
-
       if (qv) data = data.filter(d => [d.name, d.email, d.message, ...(d.skills || [])].join(' ').toLowerCase().includes(qv));
       if (skill) data = data.filter(d => (d.skills || []).includes(skill));
       data.sort((a, b) => {
@@ -467,11 +502,9 @@
         if (sort === 'name_asc') return (a.name || '').localeCompare(b.name || '');
         return 0;
       });
-
       grid.innerHTML = data.length ? '' : '<div class="empty">No matching experts.</div>';
       data.forEach(ex => grid.appendChild(renderCard(ex)));
     }
-
     function renderRatingInputs() {
       ratingInput.innerHTML = '';
       for (let i = 1; i <= 5; i++) {
@@ -479,13 +512,16 @@
         btn.className = 'star-btn';
         btn.innerHTML = i <= selectedRating ? starSVG(true, 20) : starSVG(false, 20);
         btn.dataset.val = i;
-        btn.addEventListener('click', () => { selectedRating = i; updatePreview(); renderRatingInputs(); });
+        btn.addEventListener('click', () => {
+          selectedRating = i;
+          updatePreview();
+          renderRatingInputs();
+        });
         btn.addEventListener('mouseover', () => ratingInput.querySelectorAll('.star-btn').forEach((n, idx) => n.innerHTML = idx < i ? starSVG(true, 20) : starSVG(false, 20)));
         btn.addEventListener('mouseout', () => renderRatingInputs());
         ratingInput.appendChild(btn);
       }
     }
-
     function updatePreview() {
       const name = inpName.value.trim() || 'Nama';
       const email = inpEmail.value.trim() || 'email@domain';
@@ -498,7 +534,6 @@
       previewTags.innerHTML = skills.slice(0, 6).map(s => `<div class="tag">${escapeHtml(s)}</div>`).join('');
       previewStars.innerHTML = `<div class="stars">${[1, 2, 3, 4, 5].map(i => i <= selectedRating ? starSVG(true) : starSVG(false)).join('')}</div>`;
     }
-
     function openModal() {
       modalRoot.style.display = 'flex';
       modalRoot.setAttribute('aria-hidden', 'false');
@@ -511,48 +546,66 @@
       modalRoot.style.display = 'none';
       modalRoot.setAttribute('aria-hidden', 'true');
     }
-
     q.addEventListener('input', applyAndRender);
     skillFilter.addEventListener('change', applyAndRender);
     sortBy.addEventListener('change', applyAndRender);
     btnRefresh.addEventListener('click', loadExperts);
     btnAdd.addEventListener('click', openModal);
-    closeModal.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
     btnCancel.addEventListener('click', closeModal);
     [inpName, inpEmail, inpSkills, inpMessage].forEach(el => el.addEventListener('input', updatePreview));
-
     btnExport.addEventListener('click', () => {
       if (!currentData.length) return showNotification('No data to export', true);
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       downloadFile(`rating-export-${timestamp}.json`, JSON.stringify(currentData, null, 2));
       showNotification('Data exported successfully!');
     });
-
     btnSubmit.addEventListener('click', async () => {
-      const name = inpName.value.trim(), email = inpEmail.value.trim(), skills = inpSkills.value.split(',').map(s => s.trim()).filter(Boolean),
-            message = inpMessage.value.trim(), rating = selectedRating;
+      const name = inpName.value.trim(), 
+            email = inpEmail.value.trim(), 
+            skills = inpSkills.value.split(',').map(s => s.trim()).filter(Boolean),
+            message = inpMessage.value.trim(), 
+            rating = selectedRating;
+      
       if (!name || !email || !skills.length || rating === 0) {
         return showNotification('All fields (Name, Email, Skills, Rating) are required', true);
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showNotification('Invalid email format', true);
-
-      btnSubmit.disabled = true; btnSubmit.textContent = 'Saving...';
+      
+      btnSubmit.disabled = true; 
+      btnSubmit.textContent = 'Saving...';
+      
       try {
-        const newExpert = { name, email, skills, message, rating, initial: name[0].toUpperCase() };
+        const newExpert = { 
+          name, 
+          email, 
+          skills, 
+          message, 
+          rating, 
+          initial: name[0].toUpperCase() 
+        };
+        
+        // Add to local data first
         currentData.push(newExpert);
+        
+        // Try to update GitHub
         await updateRatingData(currentData);
+        
+        // Reload data to ensure consistency
         await loadExperts();
+        
         closeModal();
         showNotification('Expert saved successfully!');
       } catch (e) {
         console.error('Save error:', e);
-        showNotification('Failed to save expert: ' + e.message, true);
-        currentData.pop(); // Revert on failure
+        showNotification('Failed to save expert: ' + (e.message || 'Unknown error'), true);
+        // Remove the added expert if save failed
+        currentData.pop();
       } finally {
-        btnSubmit.disabled = false; btnSubmit.textContent = 'Save Expert';
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = 'Save Expert';
       }
     });
-
     renderRatingInputs();
     loadExperts();
   </script>
