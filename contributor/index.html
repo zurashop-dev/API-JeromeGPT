@@ -33,6 +33,7 @@
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+      transition: all 0.3s ease;
     }
     #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
     header {
@@ -293,7 +294,6 @@
     animateParticles();
     window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-    const API = 'http://localhost:3000/api/rating';
     const el = id => document.getElementById(id);
     function escapeHtml(s) { return s ? String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])) : ''; }
     function downloadFile(filename, content) {
@@ -311,19 +311,104 @@
       setTimeout(() => notif.remove(), 3000);
     }
 
-    const grid = el('grid'), q = el('q'), skillFilter = el('skillFilter'), sortBy = el('sortBy'), totalCount = el('totalCount'),
-          avgRating = el('avgRating'), topSkill = el('topSkill'), btnExport = el('btnExport'), btnRefresh = el('btnRefresh'),
-          btnAdd = el('btnAdd'), modalRoot = el('modalRoot'), closeModal = el('closeModal'), btnCancel = el('btnCancel'),
-          btnSubmit = el('btnSubmit'), inpName = el('inpName'), inpEmail = el('inpEmail'), inpSkills = el('inpSkills'),
-          inpMessage = el('inpMessage'), previewInitial = el('previewInitial'), previewName = el('previewName'),
-          previewEmail = el('previewEmail'), previewMsg = el('previewMsg'), previewTags = el('previewTags'),
-          previewStars = el('previewStars'), ratingInput = el('ratingInput');
+    // GitHub configuration
+    const GITHUB_TOKEN = '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'; // Replace with your GitHub PAT
+    const OWNER = 'zurashop-dev'; // Replace with your GitHub username
+    const REPO = 'API-JeromeGPT'; // Replace with your repository name
+    const PATH = 'database/rating.json'; // Path to rating.json
+    const BRANCH = 'main'; // Branch name
 
-    let selectedRating = 0, currentData = [];
+    // Element references
+    const grid = el('grid'),
+          q = el('q'),
+          skillFilter = el('skillFilter'),
+          sortBy = el('sortBy'),
+          totalCount = el('totalCount'),
+          avgRating = el('avgRating'),
+          topSkill = el('topSkill'),
+          btnExport = el('btnExport'),
+          btnRefresh = el('btnRefresh'),
+          btnAdd = el('btnAdd'),
+          modalRoot = el('modalRoot'),
+          closeModal = el('closeModal'),
+          btnCancel = el('btnCancel'),
+          btnSubmit = el('btnSubmit'),
+          inpName = el('inpName'),
+          inpEmail = el('inpEmail'),
+          inpSkills = el('inpSkills'),
+          inpMessage = el('inpMessage'),
+          previewInitial = el('previewInitial'),
+          previewName = el('previewName'),
+          previewEmail = el('previewEmail'),
+          previewMsg = el('previewMsg'),
+          previewTags = el('previewTags'),
+          previewStars = el('previewStars'),
+          ratingInput = el('ratingInput');
+
+    let selectedRating = 0,
+        currentData = [];
 
     function starSVG(filled = false, size = 18) {
       return filled ? `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="#ffd166"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.8 5.658 1.37 8.005L12 18.896 4.83 23.412 6.2 15.407 0.4 9.75l7.932-1.732z"/></svg>` :
                       `<svg class="star" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" style="color: rgba(255, 255, 255, 0.18)"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" stroke-width="0.9"/></svg>`;
+    }
+
+    async function getFileSha() {
+      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      });
+      if (response.status === 404) return null; // File does not exist
+      if (!response.ok) throw new Error('Failed to get file SHA');
+      const data = await response.json();
+      return data.sha;
+    }
+
+    async function getRatingData() {
+      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}?ref=${BRANCH}`;
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      });
+      if (response.status === 404) return []; // Return empty array if file not found
+      if (!response.ok) throw new Error('Failed to fetch rating data');
+      const data = await response.json();
+      const content = Buffer.from(data.content, 'base64').toString('utf-8');
+      return JSON.parse(content);
+    }
+
+    async function updateRatingData(newData) {
+      const sha = await getFileSha();
+      const content = Buffer.from(JSON.stringify(newData, null, 2)).toString('base64');
+      const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`;
+      const body = {
+        message: `Update ${PATH} at ${new Date().toISOString()}`,
+        content,
+        branch: BRANCH
+      };
+      if (sha) body.sha = sha;
+
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) throw new Error('Failed to update rating data');
+      return await response.json();
     }
 
     function renderCard(ex) {
@@ -353,9 +438,7 @@
     async function loadExperts() {
       grid.innerHTML = '<div class="empty">Loading experts…</div>';
       try {
-        const res = await fetch(API, { method: 'GET', headers: { 'Content-Type': 'application/json' } });
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        currentData = await res.json() || [];
+        currentData = await getRatingData();
         const stats = computeStats(currentData);
         totalCount.textContent = `Total experts: ${stats.total}`;
         avgRating.textContent = `Avg rating: ${stats.avg}`;
@@ -365,7 +448,7 @@
         applyAndRender();
       } catch (e) {
         console.error('Load error:', e);
-        grid.innerHTML = '<div class="empty" style="color: tomato">Failed to load experts.</div>';
+        grid.innerHTML = '<div class="empty" style="color: tomato">Failed to load experts. Check GitHub token or network.</div>';
         showNotification('Failed to load experts: ' + e.message, true);
       }
     }
@@ -424,7 +507,10 @@
       renderRatingInputs();
       updatePreview();
     }
-    function closeModal() { modalRoot.style.display = 'none'; modalRoot.setAttribute('aria-hidden', 'true'); }
+    function closeModal() {
+      modalRoot.style.display = 'none';
+      modalRoot.setAttribute('aria-hidden', 'true');
+    }
 
     q.addEventListener('input', applyAndRender);
     skillFilter.addEventListener('change', applyAndRender);
@@ -452,19 +538,19 @@
 
       btnSubmit.disabled = true; btnSubmit.textContent = 'Saving...';
       try {
-        const res = await fetch(API, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, skills, message, rating })
-        });
-        if (!res.ok) throw new Error(await res.text() || 'Server error');
+        const newExpert = { name, email, skills, message, rating, initial: name[0].toUpperCase() };
+        currentData.push(newExpert);
+        await updateRatingData(currentData);
         await loadExperts();
         closeModal();
         showNotification('Expert saved successfully!');
       } catch (e) {
         console.error('Save error:', e);
         showNotification('Failed to save expert: ' + e.message, true);
-      } finally { btnSubmit.disabled = false; btnSubmit.textContent = 'Save Expert'; }
+        currentData.pop(); // Revert on failure
+      } finally {
+        btnSubmit.disabled = false; btnSubmit.textContent = 'Save Expert';
+      }
     });
 
     renderRatingInputs();
