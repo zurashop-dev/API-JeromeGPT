@@ -2,7 +2,11 @@
   {
     "name": "Ahmad Fauzi",
     "email": "ahmad@jgp.com",
-    "skills": ["Python", "AI", "Web Development"],
+    "skills": [
+      "Python",
+      "AI",
+      "Web Development"
+    ],
     "message": "Expert in AI-driven solutions.",
     "rating": 4,
     "initial": "A"
@@ -10,9 +14,22 @@
   {
     "name": "Budi Santoso",
     "email": "budi@jgp.com",
-    "skills": ["JavaScript", "Automation"],
+    "skills": [
+      "JavaScript",
+      "Automation"
+    ],
     "message": "Specializes in web automation.",
     "rating": 5,
     "initial": "B"
+  },
+  {
+    "name": "Ahmad Sahroni",
+    "email": "sahroniganteng12@gmail.com",
+    "skills": [
+      "DPR + Orang Gila"
+    ],
+    "message": "Bagus",
+    "rating": 4,
+    "initial": "A"
   }
 ]
