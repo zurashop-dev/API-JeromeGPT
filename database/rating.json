@@ -31,5 +31,17 @@
     "message": "Bagus",
     "rating": 4,
     "initial": "A"
+  },
+  {
+    "name": "Ryu",
+    "email": "ryubagas@gmail.com",
+    "skills": [
+      "Pembokep",
+      "ODGJ",
+      "CUCU AHMAD SAHRONI"
+    ],
+    "message": "Keren bangetttt",
+    "rating": 5,
+    "initial": "R"
   }
 ]
