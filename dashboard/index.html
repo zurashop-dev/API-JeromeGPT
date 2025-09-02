@@ -1,360 +1,553 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0f172a" />
-  
-  <title>Jerome GPT - Layanan REST API Gratis, Cepat & Terpercaya | Free Public API Indonesia</title>
+  <title>Jerome GPT — REST API Gratis & Terpercaya</title>
   <link rel="icon" href="https://files.catbox.moe/juvgct.png" type="image/png">
-  <meta name="description" content="Jerome GPT menyediakan layanan REST API gratis, cepat, dan terpercaya untuk developer Indonesia. Fitur lengkap: status monitoring realtime, dokumentasi lengkap, endpoint beragam, akses unlimited, dan dukungan 24/7." />
-  <meta name="keywords" content="jerome gpt, jeromegpt, api jeromegpt, api gratis, api cepat, rest api, free api, api indonesia, public api, api terpercaya, layanan api, api documentation, api status, api monitoring, api endpoint, developer api, api service, rest api indonesia, api gratis indonesia, rest api documentation, api integration" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="google" content="notranslate" />
-  <meta name="author" content="Jerome GPT" />
-  <meta name="coverage" content="Worldwide" />
-  <meta name="distribution" content="Global" />
-  <meta name="rating" content="General" />
-  <meta name="revisit-after" content="7 days" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="alternate" href="https://api.jeromegpt.my.id" hreflang="id-ID" />
+  <meta name="description" content="Jerome GPT menyediakan layanan REST API gratis, cepat, dan terpercaya untuk developer Indonesia." />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Jerome GPT - Layanan REST API Gratis & Terpercaya | Free Public API Indonesia" />
-  <meta property="og:description" content="Layanan REST API gratis dengan performa tinggi untuk developer Indonesia. Dokumentasi lengkap, monitoring realtime, endpoint beragam, akses unlimited & support 24/7." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://api.jeromegpt.my.id" />
-  <meta property="og:site_name" content="Jerome GPT" />
-  <meta property="og:locale" content="id_ID" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:image" content="https://api.jeromegpt.my.id/images/logo.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Jerome GPT Interface Preview" />
+  <!-- fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Jerome GPT - REST API Gratis & Terpercaya" />
-  <meta name="twitter:description" content="Layanan REST API gratis dengan performa tinggi untuk developer Indonesia. Dokumentasi lengkap & monitoring realtime." />
-  <meta name="twitter:image" content="https://api.jeromegpt.my.id/images/jeromegpt-twitter.png" />
-  <meta name="twitter:creator" content="@jeromegpt" />
-  <meta name="twitter:site" content="@jeromegpt" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebAPI",
-    "name": "Jerome GPT",
-    "alternateName": ["Jerome GPT API", "Free Public API Indonesia"],
-    "description": "Layanan REST API gratis dan terpercaya untuk developer Indonesia",
-    "url": "https://api.jeromegpt.my.id",
-    "logo": "https://api.jeromegpt.my.id/images/logo.png",
-    "sameAs": [
-      "https://github.com/zuraasukalc",
-      "https://twitter.com/jeromegpt"
-    ],
-    "provider": {
-      "@type": "Organization",
-      "name": "Jerome GPT",
-      "url": "https://api.jeromegpt.my.id",
-      "logo": "https://api.jeromegpt.my.id/images/logo.png"
-    },
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "1250",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://api.jeromegpt.my.id/dashboard"
-      }
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Jerome GPT",
-    "url": "https://api.jeromegpt.my.id",
-    "logo": "https://api.jeromegpt.my.id/images/logo.png",
-    "sameAs": [
-      "https://github.com/zuraasukalc",
-      "https://twitter.com/jeromegpt"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "technical support",
-      "email": "jeromegpt12@gmail.com",
-      "availableLanguage": ["Indonesian", "English"]
-    }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SiteNavigationElement",
-    "name": [
-      "Home",
-      "Support",
-      "Contributor",
-      "Donasi",
-      "Terms of Service",
-      "GET Documentation"
-    ],
-    "url": [
-      "https://api.jeromegpt.my.id/",
-      "https://api.jeromegpt.my.id/support",
-      "https://contributor.jeromegpt.my.id",
-      "https://api.jeromegpt.my.id/donasi",
-      "https://api.jeromegpt.my.id/tos",
-      "https://docs-api.jeromegpt.my.id"
-    ]
-  }
-  </script>
-
+  <!-- Tailwind CDN (with JIT features) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link href="/assets/css/main.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9',
+            slate900: '#0f172a',
+            accent: '#a78bfa'
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'slide-up': 'slideUp .7s cubic-bezier(.2,.9,.2,1) both',
+            shimmer: 'shimmer 2.2s linear infinite',
+            'pulse-fast': 'pulse 1.4s ease-in-out infinite',
+            neon: 'neon 1.5s ease-in-out infinite alternate',
+            wave: 'wave 10s linear infinite',
+            glow: 'glow 2s ease-in-out infinite alternate',
+            spin-slow: 'spin 20s linear infinite'
+          },
+          keyframes: {
+            float: { '0%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' }, '100%': { transform: 'translateY(0px)' } },
+            slideUp: { '0%': { opacity: 0, transform: 'translateY(14px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            shimmer: { '0%': { backgroundPosition: '-600px 0' }, '100%': { backgroundPosition: '600px 0' } },
+            neon: { '0%': { textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ea5e9, 0 0 20px #0ea5e9, 0 0 30px #0ea5e9, 0 0 40px #0ea5e9, 0 0 50px #0ea5e9, 0 0 75px #0ea5e9' }, '100%': { textShadow: '0 0 2px #fff, 0 0 5px #fff, 0 0 7px #0ea5e9, 0 0 10px #0ea5e9, 0 0 15px #0ea5e9, 0 0 20px #0ea5e9, 0 0 25px #0ea5e9, 0 0 35px #0ea5e9' } },
+            wave: { '0%': { backgroundPosition: '0 0' }, '100%': { backgroundPosition: '200% 0' } },
+            glow: { '0%': { boxShadow: '0 0 10px rgba(14, 165, 233, 0.5)' }, '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8)' } }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{color-scheme: dark}
+    html,body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;margin:0;padding:0;background:#070812}
+
+    /* gradient text */
+    .gradient-text{background:linear-gradient(92deg,#7dd3fc,#60a5fa 50%,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    /* glass card */
+    .glass-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);border-radius:1.5rem}
+
+    /* fancy navbar underline */
+    .nav-link{position:relative}
+    .nav-link::after{content:'';position:absolute;left:0;bottom:-8px;width:0;height:3px;border-radius:999px;background:linear-gradient(90deg,#60a5fa,#7c3aed);transition:width .28s cubic-bezier(.2,.9,.2,1)}
+    .nav-link:hover::after{width:100%}
+
+    /* animated gradient under hero */
+    .hero-gradient{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:1400px;height:700px;filter:blur(120px);opacity:.15;background:radial-gradient(circle at 20% 30%, #60a5fa 0%, transparent 20%), radial-gradient(circle at 80% 60%, #7c3aed 0%, transparent 30%);pointer-events:none;animation: float 8s ease-in-out infinite;}
+
+    /* shimmer CTA */
+    .cta-shimmer{background:linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.03) 100%);background-size:1200px 100%;animation:shimmer 2.2s linear infinite}
+
+    /* mobile menu overlay */
+    .menu-overlay{background:linear-gradient(180deg, rgba(6,8,15,0.8), rgba(6,8,15,0.95));backdrop-filter:blur(6px)}
+
+    /* subtle floating icons */
+    .float-blob{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(32px);opacity:.1;transform:translate3d(0,0,0);animation: float 12s ease-in-out infinite;}
+
+    /* faq open transition */
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1),padding .28s}
+    .faq-open .faq-answer{max-height:320px;padding-top:1rem}
+
+    /* header glass shadow */
+    header.shadow-xl{box-shadow:0 8px 30px rgba(2,6,23,.6)!important}
+
+    /* particle canvas stretches behind content */
+    #bg-canvas{position:fixed;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+    /* digital wave background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(96,165,250,0.1) 0%, rgba(124,58,237,0.1) 50%, rgba(96,165,250,0.1) 100%);
+      background-size: 200% 100%;
+      animation: wave 15s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* neon glow on hover */
+    .neon-hover:hover {
+      animation: neon 1.5s ease-in-out infinite alternate;
+    }
+
+    /* glow effect on cards */
+    .glow-card {
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    /* improved button styles */
+    .btn-primary {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(14, 165, 233, 0.3);
+    }
+
+    /* accessibility small screens fix */
+    @media (max-width:640px){.hero-text{font-size:2.5rem;line-height:1.2}}
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .cta-shimmer, .float-blob, .hero-gradient, .glass-card, .animate-pulse, .animate-neon, .animate-glow{animation:none}
+    }
+  </style>
 </head>
-<body class="bg-slate-900 font-inter">
-  <!-- Navbar -->
-  <nav class="navbar fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-gray-800/50">
-    <div class="container mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <span class="text-lg font-bold gradient-text">API Jerome GPT</span>
+<body class="bg-slate-900 text-slate-100 overflow-x-hidden">
+
+  <!-- background particle canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- NAVBAR (modern, animated, improved responsiveness) -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300">
+    <nav class="w-full border-b border-slate-800/40 backdrop-blur bg-slate-900/60">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <a href="/" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Jerome GPT home">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg glow-card">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div class="leading-tight">
+              <div class="text-base font-bold gradient-text">Jerome GPT</div>
+              <div class="text-xs text-slate-400 -mt-0.5">Free Public API · Indonesia</div>
+            </div>
+          </a>
         </div>
-        
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="/" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a>
-          <a href="https://docs-api.jeromegpt.my.id" class="text-gray-300 hover:text-white transition-colors duration-300">GET Docs</a>
-          <a href="/donasi" class="text-gray-300 hover:text-white transition-colors duration-300">Donate</a>
+
+        <!-- desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Home</a>
+          <a href="https://docs-api.jeromegpt.my.id" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Docs</a>
+          <a href="/contributors" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Contributors</a>
+          <a href="/donate" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Donate</a>
         </div>
-        
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-          <button id="mobile-menu-button" class="text-gray-300 hover:text-white transition-colors duration-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="https://docs-api.jeromegpt.my.id" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl glass-card text-sm font-semibold hover:scale-[1.02] transition-transform neon-hover btn-primary"> <i class="ri-book-2-line text-lg"></i> Docs</a>
+          <a href="/donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all neon-hover btn-primary"><i class="ri-heart-line text-lg"></i> Donate</a>
+        </div>
+
+        <!-- mobile button -->
+        <div class="md:hidden flex items-center">
+          <button id="btn-mobile" aria-expanded="false" aria-label="Open menu" class="p-2 rounded-md bg-slate-800/60 hover:bg-slate-800/80 focus:ring-2 focus:ring-blue-500 inline-flex items-center transition-all">
+            <svg id="hamburger" class="w-6 h-6 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="close" class="w-6 h-6 text-slate-200 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
-    </div>
-    
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-gray-800/50">
-      <div class="container mx-auto px-4 py-3 space-y-2">
-        <a href="/" class="block py-2 text-gray-300 hover:text-white transition-colors duration-300">Home</a>
-        <a href="https://docs-api.jeromegpt.my.id" class="block py-2 text-gray-300 hover:text-white transition-colors duration-300">GET Docs</a>
-        <a href="/donasi" class="block py-2 text-gray-300 hover:text-white transition-colors duration-300">Donate</a>
-      </div>
-    </div>
-  </nav>
-  
-  <header class="gradient-bg text-white min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-slate-900/50"></div>
-    <div class="container mx-auto px-4 text-center relative z-10">
-      <div class="max-w-4xl mx-auto">
-        <div class="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-8 animate-float">
-          🚀 Next-Generation API Platform
+
+      <!-- Mobile overlay menu (improved) -->
+      <div id="mobile-menu" class="hidden md:hidden menu-overlay absolute top-full left-0 w-full transition-all duration-300">
+        <div class="px-6 py-8">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center glow-card">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <div class="text-base font-bold gradient-text">Jerome GPT</div>
+                <div class="text-xs text-slate-400">API Gratis — Developer</div>
+              </div>
+            </div>
+            <a href="/donate" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium neon-hover btn-primary">Donate</a>
+          </div>
+
+          <nav class="space-y-4">
+            <a href="/" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Home</a>
+            <a href="https://docs-api.jeromegpt.my.id" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Docs</a>
+            <a href="/contributors" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Contributors</a>
+            <a href="/donate" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Donate</a>
+          </nav>
+
+          <div class="pt-8 border-t border-slate-800/40 mt-8">
+            <p class="text-sm text-slate-400">Need help? <a class="text-blue-300 hover:text-blue-200 neon-hover" href="https://t.me/zuraasukalc">Contact us</a></p>
+          </div>
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight hero-text animate-slide-up">Build Smarter.<br />Scale Faster.</h1>
-        <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed animate-slide-up animation-delay-200">Experience a powerful, easy-to-use API ready to scale with advanced features and lightning-fast performance.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="https://docs-api.jeromegpt.my.id" class="cta-button inline-block text-white px-10 py-4 rounded-xl text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-500 transform hover:-translate-y-2 shadow-2xl hover:shadow-blue-500/25 glow-effect animate-slide-up animation-delay-400">
-            📖 Docs Get
-          </a>
-          </a>
-        </div>
       </div>
-    </div>
+    </nav>
   </header>
-  
-  <section id="features" class="py-32 gradient-bg text-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-20">
-        <div class="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-6 animate-float">
-          ✨ Premium Features
-        </div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 hero-text animate-slide-up">Engineered for Excellence</h2>
-        <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-200">Everything you need to build and scale your application with enterprise-grade reliability</p>
-      </div>
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="glass-card p-10 rounded-3xl group transform hover:-translate-y-2 transition-all duration-500">
-          <div class="mb-6">
-            <i class="ri-flashlight-line feature-icon text-4xl block mb-4 text-blue-400 group-hover:scale-110 transition-transform duration-300"></i>
+
+  <!-- HERO (improved typography and spacing) -->
+  <main class="pt-32 relative z-10 md:pt-40">
+    <section class="relative overflow-hidden">
+      <div class="hero-gradient" aria-hidden="true"></div>
+      <div class="container mx-auto px-4 py-32 relative z-10 md:py-40">
+        <div class="max-w-4xl mx-auto text-center">
+          <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-indigo-600/6 text-blue-300 text-base font-medium mb-8 animate-float">🚀 Next-Gen API Platform</span>
+          <h1 class="hero-text text-5xl md:text-7xl font-extrabold leading-tight mb-8 gradient-text animate-neon">Build smarter APIs — grow without limits.</h1>
+          <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">Jerome GPT memberikan REST API gratis, mudah diintegrasikan, dengan dokumentasi lengkap dan performa tinggi. Cocok untuk developer, hackathon, dan proyek produksi.</p>
+
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="https://docs-api.jeromegpt.my.id" class="px-8 py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg cta-shimmer neon-hover btn-primary">📖 Read Docs</a>
+            <a href="/donate" class="px-8 py-4 rounded-xl border border-slate-700 text-slate-200 hover:text-white hover:border-transparent hover:bg-slate-800/80 transition-all neon-hover btn-primary">💖 Donate</a>
           </div>
-          <h3 class="text-2xl font-bold mb-4 text-white">Lightning Speed</h3>
-          <p class="text-gray-400 leading-relaxed">Global infrastructure ensures super-fast response times worldwide with edge computing optimization.</p>
-        </div>
-        <div class="glass-card p-10 rounded-3xl group transform hover:-translate-y-2 transition-all duration-500">
-          <div class="mb-6">
-            <i class="ri-user-smile-line feature-icon text-4xl block mb-4 text-blue-400 group-hover:scale-110 transition-transform duration-300"></i>
-          </div>
-          <h3 class="text-2xl font-bold mb-4 text-white">Easy to Use</h3>
-          <p class="text-gray-400 leading-relaxed">Intuitive design and comprehensive documentation for a seamless development experience.</p>
-        </div>
-        <div class="glass-card p-10 rounded-3xl group transform hover:-translate-y-2 transition-all duration-500">
-          <div class="mb-6">
-            <i class="ri-bar-chart-box-line feature-icon text-4xl block mb-4 text-blue-400 group-hover:scale-110 transition-transform duration-300"></i>
-          </div>
-          <h3 class="text-2xl font-bold mb-4 text-white">Smart Scaling</h3>
-          <p class="text-gray-400 leading-relaxed">Automatic scaling that intelligently adapts to your application needs and traffic patterns.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="faq" class="py-32 gradient-bg text-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-20">
-          <div class="inline-block px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium mb-6 animate-float">
-            ❓ FAQ
-          </div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 hero-text animate-slide-up">Common Questions</h2>
-        </div>
-        <div class="space-y-4">
-          <div class="faq-item p-8 rounded-2xl bg-slate-800/50 cursor-pointer transition-all duration-300">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-semibold">Is this API service really free?</h3>
-              <button class="faq-toggle text-blue-400 text-3xl font-light">+</button>
+
+          <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div class="glass-card p-8 glow-card">
+              <div class="text-base font-semibold text-blue-300 mb-2">Latency</div>
+              <div class="text-3xl font-bold mb-4">~20-80ms</div>
+              <p class="text-base text-slate-400">Optimized edge routes for low-latency responses.</p>
             </div>
-            <div class="faq-answer pt-6 hidden">
-              <p class="text-gray-400 leading-relaxed">Absolutely! You can use this API completely free without any registration or login required.</p>
+            <div class="glass-card p-8 glow-card">
+              <div class="text-base font-semibold text-blue-300 mb-2">Docs</div>
+              <div class="text-3xl font-bold mb-4">Full REST Endpoints</div>
+              <p class="text-base text-slate-400">Complete documentation, examples and SDKs.</p>
             </div>
-          </div>
-          <div class="faq-item p-8 rounded-2xl bg-slate-800/50 cursor-pointer transition-all duration-300">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-semibold">Are there any usage limits for this API?</h3>
-              <button class="faq-toggle text-blue-400 text-3xl font-light">+</button>
-            </div>
-            <div class="faq-answer pt-6 hidden">
-              <p class="text-gray-400 leading-relaxed">Not at all! You can access this API with unlimited requests.</p>
-            </div>
-          </div>
-          <div class="faq-item p-8 rounded-2xl bg-slate-800/50 cursor-pointer transition-all duration-300">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-semibold">Can I contribute to support the development of this API?</h3>
-              <button class="faq-toggle text-blue-400 text-3xl font-light">+</button>
-            </div>
-            <div class="faq-answer pt-6 hidden">
-              <p class="text-gray-400 leading-relaxed">Of course! We greatly appreciate your support. Please visit jeromegpt.my.id/donasi to make a donation and help us develop this API even better.</p>
-            </div>
-          </div>
-          <div class="faq-item p-8 rounded-2xl bg-slate-800/50 cursor-pointer transition-all duration-300">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-semibold">What makes this API different from others?</h3>
-              <button class="faq-toggle text-blue-400 text-3xl font-light">+</button>
-            </div>
-            <div class="faq-answer pt-6 hidden">
-              <p class="text-gray-400 leading-relaxed">Simple, fast, free, and unlimited! We also continuously listen to user feedback to improve service quality.</p>
+            <div class="glass-card p-8 glow-card">
+              <div class="text-base font-semibold text-blue-300 mb-2">Support</div>
+              <div class="text-3xl font-bold mb-4">24/7</div>
+              <p class="text-base text-slate-400">Community & direct support channels.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <footer class="footer text-white py-12 bg-slate-900/95">
-    <div class="container mx-auto px-4">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+      <!-- decorative floating blobs (more added) -->
+      <div class="float-blob left-10 top-20 bg-gradient-to-br from-blue-500 to-indigo-600" style="transform:translateY(-10px);"></div>
+      <div class="float-blob right-10 bottom-20 bg-gradient-to-br from-purple-500 to-pink-500" style="opacity:.08;transform:translateY(20px)"></div>
+      <div class="float-blob left-1/3 bottom-1/4 bg-gradient-to-br from-green-500 to-blue-500" style="opacity:.12;transform:translateY(10px); animation-delay: 2s;"></div>
+      <div class="float-blob right-1/3 top-1/4 bg-gradient-to-br from-indigo-500 to-purple-500" style="opacity:.1;transform:translateY(-15px); animation-delay: 4s;"></div>
+    </section>
+
+    <!-- FEATURES (improved icons and descriptions) -->
+    <section id="features" class="py-24 md:py-32">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Engineered for Excellence</h2>
+          <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">Infrastructure, docs, and UX built for developers who need reliability and speed.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Lightning speed">
+            <div class="flex items-center gap-4 mb-6">
+              <i class="ri-flashlight-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">Lightning Speed</h3>
+                <p class="text-base text-slate-400">Global edge network and smart caching for ultra-fast responses.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Secure by design">
+            <div class="flex items-center gap-4 mb-6">
+              <i class="ri-shield-check-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">Secure by Design</h3>
+                <p class="text-base text-slate-400">Token-based access, advanced rate-control & real-time monitoring.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Developer friendly">
+            <div class="flex items-center gap-4 mb-6">
+              <i class="ri-code-box-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">Developer Friendly</h3>
+                <p class="text-base text-slate-400">Comprehensive examples, SDK snippets and interactive quickstarts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API EXAMPLES (improved with more examples and syntax highlighting) -->
+    <section id="examples" class="py-24 md:py-32 bg-slate-900/40 border-t border-b border-slate-800/30">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">API Examples</h2>
+          <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">Quick code snippets to get you started with our APIs. Note: These are placeholders; refer to docs for actual endpoints.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass-card p-10 glow-card">
+            <h3 class="text-xl font-semibold gradient-text mb-6">Fetch User Data (JavaScript)</h3>
+            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-javascript"><code>fetch('https://api.jeromegpt.my.id/user')
+  .then(response =&gt; response.json())
+  .then(data =&gt; console.log(data));</code></pre>
+          </div>
+
+          <div class="glass-card p-10 glow-card">
+            <h3 class="text-xl font-semibold gradient-text mb-6">Post Comment (Python)</h3>
+            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-python"><code>import requests
+response = requests.post('https://api.jeromegpt.my.id/comment', json={'text': 'Hello!'})
+print(response.json())</code></pre>
+          </div>
+
+          <div class="glass-card p-10 glow-card md:col-span-2">
+            <h3 class="text-xl font-semibold gradient-text mb-6">Search Query (Node.js)</h3>
+            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-javascript"><code>const axios = require('axios');
+axios.get('https://api.jeromegpt.my.id/search?q=query')
+  .then(response =&gt; console.log(response.data))
+  .catch(error =&gt; console.error(error));</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (improved accordion) -->
+    <section id="faq" class="py-24 md:py-32 bg-slate-900/40 border-t border-slate-800/30">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Frequently Asked Questions</h2>
+          <p class="text-xl text-slate-400">Answers to common questions about the API and usage.</p>
+        </div>
+
         <div class="space-y-6">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
+          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+            <header class="flex justify-between items-center faq-head">
+              <h3 class="text-xl font-semibold gradient-text">Is this API really free?</h3>
+              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+            </header>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Yes — core endpoints are free to use. We appreciate donations to help maintain uptime and improvements.</div>
+          </article>
+
+          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+            <header class="flex justify-between items-center faq-head">
+              <h3 class="text-xl font-semibold gradient-text">Are there any rate limits?</h3>
+              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+            </header>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">For most public endpoints there is generous allowance, but very high-volume usage may be subject to rate-control to protect service quality for everyone.</div>
+          </article>
+
+          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+            <header class="flex justify-between items-center faq-head">
+              <h3 class="text-xl font-semibold gradient-text">How can I contribute?</h3>
+              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+            </header>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">You can contribute by sending PRs to our GitHub, or via donations. See the contributor section for details.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER (improved layout) -->
+    <footer class="py-16 bg-slate-900/50">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-12 items-start">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg glow-card">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <div class="text-xl font-bold gradient-text">Jerome GPT</div>
+                <div class="text-sm text-slate-400">Free Public API • Indonesia</div>
+              </div>
             </div>
-            <span class="font-bold text-xl gradient-text">Jerome GPT</span>
+            <p class="text-base text-slate-400 mb-6 leading-relaxed">Built for developers — open, fast, and reliable. © 2025 Jerome GPT. All rights reserved.</p>
+
+            <div class="flex gap-4">
+              <a href="https://github.com/jeromegpt" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="Github"><i class="ri-github-fill text-xl"></i></a>
+              <a href="https://www.instagram.com/jeromegpt" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="Instagram"><i class="ri-instagram-fill text-xl"></i></a>
+              <a href="https://www.linkedin.com/in/jeromegpt" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="LinkedIn"><i class="ri-linkedin-fill text-xl"></i></a>
+            </div>
           </div>
-          <p class="text-gray-400 text-base leading-relaxed">
-            Building the future of API and AI development with modern solutions and cutting-edge technology.
-          </p>
-          <div class="flex space-x-4">
-            <a href="https://github.com/jeromegpt" class="w-10 h-10 rounded-lg bg-gray-800/50 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all duration-300">
-              <i class="ri-github-fill text-xl"></i>
-            </a>
-            <a href="https://www.instagram.com/jeromegpt" class="w-10 h-10 rounded-lg bg-gray-800/50 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all duration-300">
-              <i class="ri-instagram-fill text-xl"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/jeromegpt" class="w-10 h-10 rounded-lg bg-gray-800/50 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all duration-300">
-              <i class="ri-linkedin-fill text-xl"></i>
-            </a>
+
+          <div>
+            <h4 class="text-xl font-bold gradient-text mb-4">Support</h4>
+            <ul class="text-base text-slate-400 space-y-3">
+              <li><a href="/support" class="hover:text-white neon-hover transition-colors">Help Center</a></li>
+              <li><a href="https://t.me/zuraasukalc" class="hover:text-white neon-hover transition-colors">Community</a></li>
+              <li><a href="/donate" class="hover:text-white neon-hover transition-colors">Donate</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xl font-bold gradient-text mb-4">Legal</h4>
+            <ul class="text-base text-slate-400 space-y-3">
+              <li><a href="/tos" class="hover:text-white neon-hover transition-colors">Terms</a></li>
+              <li><a href="/privacy" class="hover:text-white neon-hover transition-colors">Privacy</a></li>
+              <li><a href="https://www.cisa.gov/" class="hover:text-white neon-hover transition-colors">Security</a></li>
+            </ul>
           </div>
         </div>
-        
-        <div>
-          <h4 class="text-base font-bold uppercase tracking-wider mb-6 text-white">Support</h4>
-          <ul class="space-y-3">
-            <li><a href="https://t.me/zuraasukalc" class="text-gray-400 hover:text-white transition-colors duration-300">Help Center</a></li>
-            <li><a href="https://whatsapp.com/channel/0029VatwqJjFMqrgAzlx9o1d" class="text-gray-400 hover:text-white transition-colors duration-300">Community</a></li>
-            <li><a href="/support" class="text-gray-400 hover:text-white transition-colors duration-300">Support</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="text-base font-bold uppercase tracking-wider mb-6 text-white">Other</h4>
-          <ul class="space-y-3">
-            <li><a href="/donasi" class="text-gray-400 hover:text-white transition-colors duration-300">Donation</a></li>
-            <li><a href="https://contributor.jeromegpt.my.id" class="text-gray-400 hover:text-white transition-colors duration-300">Contribution</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="text-base font-bold uppercase tracking-wider mb-6 text-white">Legal</h4>
-          <ul class="space-y-3">
-            <li><a href="https://www.termsfeed.com/live/e60db8e5-dfcd-4632-8f32-8db796438083" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
-            <li><a href="/tos" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a></li>
-            <li><a href="https://www.cisa.gov/" class="text-gray-400 hover:text-white transition-colors duration-300">Security</a></li>
-          </ul>
-        </div>
+
+        <div class="border-t border-slate-800/30 mt-12 pt-8 text-center text-slate-400 text-base">Made with ❤️ by Jerome GPT Team • © 2025</div>
       </div>
-      
-      <div class="border-t border-gray-800/50 mt-12 pt-8 text-center">
-        <p class="text-gray-400">
-          © 2025 Jerome GPT. All rights reserved. Built with ❤️ for developers.
-        </p>
-      </div>
-    </div>
-  </footer>
-  
-  <script src="/assets/js/script.js"></script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9774ec906db1fd00","version":"2025.8.0","r":1,"serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"b6e02fc0e81a4ea890fc7f86311c307d","b":1}' crossorigin="anonymous"></script>
+    </footer>
+  </main>
+
+  <!-- INLINE SCRIPTS: menu, faq, header shadow, particles (optimized) -->
+  <script>
+    (function(){
+      // Mobile menu toggle
+      const btn = document.getElementById('btn-mobile');
+      const menu = document.getElementById('mobile-menu');
+      const ham = document.getElementById('hamburger');
+      const close = document.getElementById('close');
+
+      btn?.addEventListener('click', () => {
+        const opened = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!opened));
+        menu.classList.toggle('hidden');
+        ham.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+      });
+
+      // Sticky nav shadow on scroll
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 12) header.classList.add('shadow-xl');
+        else header.classList.remove('shadow-xl');
+      });
+
+      // FAQ toggle
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const head = item.querySelector('.faq-head');
+        const toggle = item.querySelector('.faq-toggle');
+        head?.addEventListener('click', () => {
+          const open = item.classList.toggle('faq-open');
+          toggle.textContent = open ? '-' : '+';
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+        // Keyboard support
+        item.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') head.click(); });
+      });
+
+      // Reveal animations
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.hero-text, .glass-card, .cta-shimmer').forEach((el, i) => {
+          el.style.opacity = 0;
+          el.style.transform = 'translateY(12px)';
+          setTimeout(() => {
+            el.style.transition = 'all .6s cubic-bezier(.2,.9,.2,1)';
+            el.style.opacity = 1;
+            el.style.transform = 'none';
+          }, 150 + i * 100);
+        });
+      });
+
+      // Particles background (optimized performance)
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resize() {
+        canvas.width = window.innerWidth * DPR;
+        canvas.height = window.innerHeight * DPR;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.scale(DPR, DPR);
+      }
+
+      function rand(min, max) { return Math.random() * (max - min) + min; }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.round((window.innerWidth * window.innerHeight) / 50000); // Adjusted density
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: rand(0, window.innerWidth),
+            y: rand(0, window.innerHeight),
+            r: rand(1, 4),
+            vx: rand(-0.3, 0.3),
+            vy: rand(-0.15, 0.15),
+            hue: rand(180, 300),
+            alpha: rand(0.05, 0.2),
+            pulse: rand(0.8, 1.8)
+          });
+        }
+      }
+
+      let lastTime = 0;
+      function draw(time) {
+        if (time - lastTime < 16) { // Throttle to ~60fps
+          requestAnimationFrame(draw);
+          return;
+        }
+        lastTime = time;
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        // Subtle gradient overlay
+        const g = ctx.createLinearGradient(0, 0, window.innerWidth, window.innerHeight);
+        g.addColorStop(0, 'rgba(12,18,40,0.05)');
+        g.addColorStop(1, 'rgba(30,10,35,0.05)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -20) p.x = window.innerWidth + 20;
+          if (p.x > window.innerWidth + 20) p.x = -20;
+          if (p.y < -20) p.y = window.innerHeight + 20;
+          if (p.y > window.innerHeight + 20) p.y = -20;
+
+          // Pulsing size
+          p.r = Math.abs(Math.sin(time / (1000 * p.pulse)) * 2 + 1.5);
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${p.hue},80%,70%,${p.alpha})`;
+          ctx.fill();
+        }
+
+        // Enhanced connections (optimized)
+        if (window.innerWidth > 768) {
+          for (let i = 0; i < particles.length; i += 2) { // Skip every other for perf
+            for (let j = i + 1; j < particles.length; j += 2) {
+              const a = particles[i]; const b = particles[j];
+              const dx = a.x - b.x, dy = a.y - b.y;
+              const d = Math.sqrt(dx * dx + dy * dy);
+              if (d < 160) {
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+                ctx.strokeStyle = `rgba(120,120,200,${(1 - d / 160) * 0.08})`;
+                ctx.lineWidth = 1.2; ctx.stroke();
+              }
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      // Init & run
+      function startBG() {
+        resize(); initParticles(); requestAnimationFrame(draw);
+      }
+      window.addEventListener('resize', () => { resize(); initParticles(); });
+
+      // Respect reduced motion
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!reduce.matches) { startBG(); }
+
+    })();
+  </script>
 </body>
 </html>
