@@ -7,12 +7,10 @@
   <title>Jerome GPT — REST API Gratis & Terpercaya</title>
   <link rel="icon" href="https://files.catbox.moe/juvgct.png" type="image/png">
   <meta name="description" content="Jerome GPT menyediakan layanan REST API gratis, cepat, dan terpercaya untuk developer Indonesia." />
-
-  <!-- fonts & icons -->
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-
-  <!-- Tailwind CDN (with JIT features) -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,69 +19,67 @@
           colors: {
             primary: '#0ea5e9',
             slate900: '#0f172a',
-            accent: '#a78bfa'
+            accent: '#a78bfa',
+            neonBlue: '#00ddeb',
+            neonPurple: '#d946ef'
           },
           animation: {
             float: 'float 6s ease-in-out infinite',
-            'slide-up': 'slideUp .7s cubic-bezier(.2,.9,.2,1) both',
+            slideUp: 'slideUp .7s cubic-bezier(.2,.9,.2,1) both',
             shimmer: 'shimmer 2.2s linear infinite',
-            'pulse-fast': 'pulse 1.4s ease-in-out infinite',
+            pulseFast: 'pulse 1.4s ease-in-out infinite',
             neon: 'neon 1.5s ease-in-out infinite alternate',
             wave: 'wave 10s linear infinite',
             glow: 'glow 2s ease-in-out infinite alternate',
-            spin-slow: 'spin 20s linear infinite'
+            spinSlow: 'spin 20s linear infinite',
+            bounce: 'bounce 2s ease-in-out infinite',
+            fadeIn: 'fadeIn 1s ease-out forwards',
+            rotateGlow: 'rotateGlow 5s linear infinite',
+            scalePulse: 'scalePulse 1.5s ease-in-out infinite',
+            pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            glowPulse: 'glowPulse 1.8s ease-in-out infinite alternate',
+            messageSlide: 'messageSlide 0.3s ease-out forwards',
+            typing: 'typing 1.4s infinite'
           },
           keyframes: {
             float: { '0%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-12px)' }, '100%': { transform: 'translateY(0px)' } },
             slideUp: { '0%': { opacity: 0, transform: 'translateY(14px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
             shimmer: { '0%': { backgroundPosition: '-600px 0' }, '100%': { backgroundPosition: '600px 0' } },
-            neon: { '0%': { textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ea5e9, 0 0 20px #0ea5e9, 0 0 30px #0ea5e9, 0 0 40px #0ea5e9, 0 0 50px #0ea5e9, 0 0 75px #0ea5e9' }, '100%': { textShadow: '0 0 2px #fff, 0 0 5px #fff, 0 0 7px #0ea5e9, 0 0 10px #0ea5e9, 0 0 15px #0ea5e9, 0 0 20px #0ea5e9, 0 0 25px #0ea5e9, 0 0 35px #0ea5e9' } },
+            neon: { 
+              '0%': { textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ddeb, 0 0 20px #00ddeb, 0 0 30px #00ddeb, 0 0 40px #00ddeb, 0 0 50px #00ddeb, 0 0 75px #00ddeb' }, 
+              '100%': { textShadow: '0 0 2px #fff, 0 0 5px #fff, 0 0 7px #00ddeb, 0 0 10px #00ddeb, 0 0 15px #00ddeb, 0 0 20px #00ddeb, 0 0 25px #00ddeb, 0 0 35px #00ddeb' } 
+            },
             wave: { '0%': { backgroundPosition: '0 0' }, '100%': { backgroundPosition: '200% 0' } },
-            glow: { '0%': { boxShadow: '0 0 10px rgba(14, 165, 233, 0.5)' }, '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8)' } }
+            glow: { '0%': { boxShadow: '0 0 10px rgba(14, 165, 233, 0.5)' }, '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8)' } },
+            glowPulse: { '0%': { boxShadow: '0 0 10px rgba(217, 70, 239, 0.4), 0 0 20px rgba(217, 70, 239, 0.2)' }, '100%': { boxShadow: '0 0 20px rgba(217, 70, 239, 0.7), 0 0 40px rgba(217, 70, 239, 0.4)' } },
+            bounce: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+            fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+            rotateGlow: { '0%': { transform: 'rotate(0deg)', boxShadow: '0 0 10px rgba(167, 139, 250, 0.5)' }, '100%': { transform: 'rotate(360deg)', boxShadow: '0 0 20px rgba(96, 165, 250, 0.8)' } },
+            scalePulse: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.05)' } },
+            messageSlide: { '0%': { opacity: 0, transform: 'translateY(10px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            typing: { '0%, 60%, 100%': { opacity: 0.3 }, '30%': { opacity: 1 } }
           }
         }
       }
     }
   </script>
-
   <style>
-    :root{color-scheme: dark}
-    html,body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;margin:0;padding:0;background:#070812}
-
-    /* gradient text */
-    .gradient-text{background:linear-gradient(92deg,#7dd3fc,#60a5fa 50%,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-    /* glass card */
-    .glass-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.06);border-radius:1.5rem}
-
-    /* fancy navbar underline */
-    .nav-link{position:relative}
-    .nav-link::after{content:'';position:absolute;left:0;bottom:-8px;width:0;height:3px;border-radius:999px;background:linear-gradient(90deg,#60a5fa,#7c3aed);transition:width .28s cubic-bezier(.2,.9,.2,1)}
-    .nav-link:hover::after{width:100%}
-
-    /* animated gradient under hero */
-    .hero-gradient{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:1400px;height:700px;filter:blur(120px);opacity:.15;background:radial-gradient(circle at 20% 30%, #60a5fa 0%, transparent 20%), radial-gradient(circle at 80% 60%, #7c3aed 0%, transparent 30%);pointer-events:none;animation: float 8s ease-in-out infinite;}
-
-    /* shimmer CTA */
-    .cta-shimmer{background:linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.03) 100%);background-size:1200px 100%;animation:shimmer 2.2s linear infinite}
-
-    /* mobile menu overlay */
-    .menu-overlay{background:linear-gradient(180deg, rgba(6,8,15,0.8), rgba(6,8,15,0.95));backdrop-filter:blur(6px)}
-
-    /* subtle floating icons */
-    .float-blob{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(32px);opacity:.1;transform:translate3d(0,0,0);animation: float 12s ease-in-out infinite;}
-
-    /* faq open transition */
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1),padding .28s}
-    .faq-open .faq-answer{max-height:320px;padding-top:1rem}
-
-    /* header glass shadow */
-    header.shadow-xl{box-shadow:0 8px 30px rgba(2,6,23,.6)!important}
-
-    /* particle canvas stretches behind content */
-    #bg-canvas{position:fixed;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-    /* digital wave background */
+    :root { color-scheme: dark; }
+    html, body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial; margin: 0; padding: 0; background: #070812; }
+    .gradient-text { background: linear-gradient(92deg, #7dd3fc, #00ddeb 50%, #d946ef); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .glass-card { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.75rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .glass-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.15); }
+    .nav-link { position: relative; font-weight: 600; }
+    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 0; height: 3px; border-radius: 999px; background: linear-gradient(90deg, #00ddeb, #d946ef); transition: width .28s cubic-bezier(.2,.9,.2,1); }
+    .nav-link:hover::after { width: 100%; }
+    .hero-gradient { position: absolute; left: 50%; top: 60%; transform: translate(-50%, -50%); width: 1600px; height: 800px; filter: blur(140px); opacity: .2; background: radial-gradient(circle at 20% 30%, #00ddeb 0%, transparent 25%), radial-gradient(circle at 80% 60%, #d946ef 0%, transparent 35%); pointer-events: none; animation: float 8s ease-in-out infinite, rotateGlow 12s linear infinite; }
+    .cta-shimmer { background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.05) 100%); background-size: 1200px 100%; animation: shimmer 2s linear infinite; }
+    .menu-overlay { background: linear-gradient(180deg, rgba(6,8,15,0.85), rgba(6,8,15,0.95)); backdrop-filter: blur(8px); }
+    .float-blob { position: absolute; width: 240px; height: 240px; border-radius: 50%; filter: blur(40px); opacity: .12; transform: translate3d(0,0,0); animation: float 10s ease-in-out infinite, scalePulse 2.5s ease-in-out infinite; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.2,.9,.2,1), padding .3s; }
+    .faq-open .faq-answer { max-height: 360px; padding-top: 1.25rem; }
+    header.shadow-xl { box-shadow: 0 10px 40px rgba(2,6,23,.65) !important; }
+    #bg-canvas { position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
     body::before {
       content: '';
       position: fixed;
@@ -91,293 +87,602 @@
       left: 0;
       width: 200%;
       height: 100%;
-      background: linear-gradient(90deg, rgba(96,165,250,0.1) 0%, rgba(124,58,237,0.1) 50%, rgba(96,165,250,0.1) 100%);
+      background: linear-gradient(90deg, rgba(0,221,235,0.12) 0%, rgba(217,70,239,0.12) 50%, rgba(0,221,235,0.12) 100%);
       background-size: 200% 100%;
-      animation: wave 15s linear infinite;
-      z-index: -1;
-      opacity: 0.3;
+      animation: wave 12s linear infinite;
+      z-index: -2;
+      opacity: 0.35;
     }
-
-    /* neon glow on hover */
-    .neon-hover:hover {
-      animation: neon 1.5s ease-in-out infinite alternate;
+    .neon-hover:hover { animation: neon 1.5s ease-in-out infinite alternate; }
+    .glow-card { animation: glowPulse 2s ease-in-out infinite alternate; }
+    .btn-primary { transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 16px rgba(0, 221, 235, 0.35); }
+    
+    /* Enhanced Chat UI */
+    .chat-container {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      box-shadow: 0 15px 35px rgba(0, 221, 235, 0.2), 0 5px 15px rgba(217, 70, 239, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
     }
-
-    /* glow effect on cards */
-    .glow-card {
-      animation: glow 2s ease-in-out infinite alternate;
+    .chat-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 221, 235, 0.7), transparent);
     }
-
-    /* improved button styles */
-    .btn-primary {
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      margin-bottom: 1.25rem;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-track {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 10px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(0, 221, 235, 0.6), rgba(217, 70, 239, 0.6));
+      border-radius: 10px;
+    }
+    .chat-message {
+      padding: 1.25rem;
+      border-radius: 1rem;
+      max-width: 80%;
+      position: relative;
+      animation: messageSlide 0.3s ease-out forwards;
+      word-wrap: break-word;
+    }
+    .message-user {
+      background: linear-gradient(135deg, rgba(0, 221, 235, 0.25), rgba(0, 221, 235, 0.15));
+      color: #e0f7fa;
+      align-self: flex-end;
+      margin-left: auto;
+      border-bottom-right-radius: 0.25rem;
+      box-shadow: 0 4px 12px rgba(0, 221, 235, 0.2);
+    }
+    .message-ai {
+      background: linear-gradient(135deg, rgba(217, 70, 239, 0.25), rgba(217, 70, 239, 0.15));
+      color: #f3e5f5;
+      align-self: flex-start;
+      border-bottom-left-radius: 0.25rem;
+      box-shadow: 0 4px 12px rgba(217, 70, 239, 0.2);
+    }
+    .chat-input {
+      background: rgba(30, 41, 59, 0.85);
+      border-radius: 1.25rem;
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .btn-primary:hover {
+    .chat-input:focus-within {
+      box-shadow: 0 0 20px rgba(217, 70, 239, 0.35), 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-color: rgba(217, 70, 239, 0.3);
+    }
+    .chat-input input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      outline: none;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+    }
+    .chat-input button {
+      background: linear-gradient(90deg, #00ddeb, #d946ef);
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 221, 235, 0.3);
+    }
+    .chat-input button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(14, 165, 233, 0.3);
+      box-shadow: 0 6px 15px rgba(0, 221, 235, 0.4);
     }
-
-    /* accessibility small screens fix */
-    @media (max-width:640px){.hero-text{font-size:2.5rem;line-height:1.2}}
-
-    /* reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .cta-shimmer, .float-blob, .hero-gradient, .glass-card, .animate-pulse, .animate-neon, .animate-glow{animation:none}
+    .chat-input button:active {
+      transform: translateY(0);
     }
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 1rem;
+      background: rgba(217, 70, 239, 0.15);
+      border-radius: 1rem;
+      width: fit-content;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background-color: #d946ef;
+      border-radius: 50%;
+      display: inline-block;
+      animation: typing 1.4s infinite;
+    }
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @media (max-width: 640px) { 
+      .hero-text { font-size: 2.75rem; line-height: 1.15; } 
+      .chat-container { padding: 1.25rem; }
+      .chat-message { max-width: 90%; }
+      .chat-messages { max-height: 300px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-shimmer, .float-blob, .hero-gradient, .glass-card, .animate-pulse, .animate-neon, .animate-glow, .animate-bounce, .animate-fadeIn, .animate-rotateGlow, .animate-scalePulse, .animate-glowPulse, .messageSlide, .typing { animation: none; }
+    }
+    .testimonial-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0, 221, 235, 0.25); }
+    .newsletter-form { transition: all 0.3s ease; }
+    .newsletter-form:focus-within { box-shadow: 0 0 20px rgba(217, 70, 239, 0.35); }
+    .back-to-top { position: fixed; bottom: 30px; right: 30px; z-index: 50; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-6px); }
+    .live-demo { background: rgba(15, 23, 42, 0.85); border-radius: 1.25rem; padding: 1.5rem; box-shadow: 0 8px 32px rgba(0, 221, 235, 0.15); }
+    .live-demo pre { background: rgba(30, 41, 59, 0.85); border-radius: 1rem; }
+    .stats-number { animation: countUp 2.5s ease-out forwards; }
+    @keyframes countUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+    .spinner { display: inline-block; width: 24px; height: 24px; border: 4px solid rgba(255,255,255,.3); border-radius: 50%; border-top-color: #fff; animation: spin 0.8s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .toast { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(100%); background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(12px); color: white; padding: 20px 32px; border-radius: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.2); z-index: 1000; opacity: 0; transition: all 0.4s ease; font-weight: 500; display: flex; align-items: center; gap: 12px; }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast.success { border-left: 5px solid #10b981; }
+    .toast.error { border-left: 5px solid #ef4444; }
+    .toast.info { border-left: 5px solid #3b82f6; }
+    .toast .icon { font-size: 1.5rem; }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 overflow-x-hidden">
-
-  <!-- background particle canvas -->
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
-
-  <!-- NAVBAR (modern, animated, improved responsiveness) -->
+  <div id="toast" class="toast"></div>
+  
+  <!-- NAVBAR -->
   <header class="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300">
-    <nav class="w-full border-b border-slate-800/40 backdrop-blur bg-slate-900/60">
+    <nav class="w-full border-b border-slate-800/50 backdrop-blur bg-slate-900/70">
       <div class="container mx-auto px-4 py-4 flex items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <a href="/" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Jerome GPT home">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg glow-card">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <a href="/" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-neonBlue" aria-label="Jerome GPT home">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-neonBlue to-neonPurple flex items-center justify-center shadow-xl glow-card animate-rotateGlow">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </div>
             <div class="leading-tight">
-              <div class="text-base font-bold gradient-text">Jerome GPT</div>
-              <div class="text-xs text-slate-400 -mt-0.5">Free Public API · Indonesia</div>
+              <div class="text-lg font-bold gradient-text">Jerome GPT</div>
+              <div class="text-sm text-slate-400 -mt-0.5">Free Public API · Indonesia</div>
             </div>
           </a>
         </div>
-
-        <!-- desktop links -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Home</a>
-          <a href="https://docs-api.jeromegpt.my.id" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Docs</a>
-          <a href="/contributors" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Contributors</a>
-          <a href="/donate" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-medium">Donate</a>
+        <div class="hidden md:flex items-center gap-10">
+          <a href="/" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-semibold">Home</a>
+          <a href="https://docs-api.jeromegpt.my.id" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-semibold">Docs</a>
+          <a href="/contributors" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-semibold">Contributors</a>
+          <a href="/donate" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-semibold">Donate</a>
+          <a href="#live-demo" class="nav-link text-slate-200 hover:text-white transition-colors neon-hover font-semibold">Live Demo</a>
         </div>
-
-        <div class="hidden md:flex items-center gap-4">
-          <a href="https://docs-api.jeromegpt.my.id" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl glass-card text-sm font-semibold hover:scale-[1.02] transition-transform neon-hover btn-primary"> <i class="ri-book-2-line text-lg"></i> Docs</a>
-          <a href="/donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all neon-hover btn-primary"><i class="ri-heart-line text-lg"></i> Donate</a>
+        <div class="hidden md:flex items-center gap-5">
+          <input type="text" placeholder="Search docs..." class="px-5 py-3 rounded-2xl glass-card text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-neonBlue transition-all" aria-label="Search documentation">
+          <a href="https://docs-api.jeromegpt.my.id" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl glass-card text-sm font-semibold hover:scale-[1.03] transition-transform neon-hover btn-primary"><i class="ri-book-2-line text-lg"></i> Docs</a>
+          <a href="/donate" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-neonBlue to-neonPurple text-white font-semibold hover:shadow-2xl transform hover:-translate-y-1 transition-all neon-hover btn-primary"><i class="ri-heart-line text-lg"></i> Donate</a>
         </div>
-
-        <!-- mobile button -->
         <div class="md:hidden flex items-center">
-          <button id="btn-mobile" aria-expanded="false" aria-label="Open menu" class="p-2 rounded-md bg-slate-800/60 hover:bg-slate-800/80 focus:ring-2 focus:ring-blue-500 inline-flex items-center transition-all">
-            <svg id="hamburger" class="w-6 h-6 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            <svg id="close" class="w-6 h-6 text-slate-200 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <button id="btn-mobile" aria-expanded="false" aria-label="Open menu" class="p-2.5 rounded-lg bg-slate-800/70 hover:bg-slate-800/90 focus:ring-2 focus:ring-neonBlue inline-flex items-center transition-all">
+            <svg id="hamburger" class="w-7 h-7 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="close" class="w-7 h-7 text-slate-200 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       </div>
-
-      <!-- Mobile overlay menu (improved) -->
       <div id="mobile-menu" class="hidden md:hidden menu-overlay absolute top-full left-0 w-full transition-all duration-300">
-        <div class="px-6 py-8">
+        <div class="px-6 py-10">
           <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center glow-card">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neonBlue to-neonPurple flex items-center justify-center glow-card">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
               <div>
-                <div class="text-base font-bold gradient-text">Jerome GPT</div>
-                <div class="text-xs text-slate-400">API Gratis — Developer</div>
+                <div class="text-lg font-bold gradient-text">Jerome GPT</div>
+                <div class="text-sm text-slate-400">API Gratis — Developer</div>
               </div>
             </div>
-            <a href="/donate" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium neon-hover btn-primary">Donate</a>
+            <a href="/donate" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-white font-semibold neon-hover btn-primary">Donate</a>
           </div>
-
-          <nav class="space-y-4">
-            <a href="/" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Home</a>
-            <a href="https://docs-api.jeromegpt.my.id" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Docs</a>
-            <a href="/contributors" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Contributors</a>
-            <a href="/donate" class="block py-3 px-4 rounded-lg hover:bg-slate-800/60 neon-hover text-lg font-medium">Donate</a>
+          <nav class="space-y-5">
+            <a href="/" class="block py-3 px-5 rounded-lg hover:bg-slate-800/70 neon-hover text-lg font-semibold">Home</a>
+            <a href="https://docs-api.jeromegpt.my.id" class="block py-3 px-5 rounded-lg hover:bg-slate-800/70 neon-hover text-lg font-semibold">Docs</a>
+            <a href="/contributors" class="block py-3 px-5 rounded-lg hover:bg-slate-800/70 neon-hover text-lg font-semibold">Contributors</a>
+            <a href="/donate" class="block py-3 px-5 rounded-lg hover:bg-slate-800/70 neon-hover text-lg font-semibold">Donate</a>
+            <a href="#live-demo" class="block py-3 px-5 rounded-lg hover:bg-slate-800/70 neon-hover text-lg font-semibold">Live Demo</a>
           </nav>
-
-          <div class="pt-8 border-t border-slate-800/40 mt-8">
-            <p class="text-sm text-slate-400">Need help? <a class="text-blue-300 hover:text-blue-200 neon-hover" href="https://t.me/zuraasukalc">Contact us</a></p>
+          <div class="mt-8">
+            <input type="text" placeholder="Search docs..." class="w-full px-5 py-3 rounded-xl glass-card text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-neonBlue" aria-label="Search documentation">
+          </div>
+          <div class="pt-10 border-t border-slate-800/50 mt-10">
+            <p class="text-sm text-slate-400">Need help? <a class="text-neonBlue hover:text-neonPurple neon-hover" href="https://t.me/zuraasukalc">Contact us</a></p>
           </div>
         </div>
       </div>
     </nav>
   </header>
-
-  <!-- HERO (improved typography and spacing) -->
-  <main class="pt-32 relative z-10 md:pt-40">
+  
+  <!-- HERO -->
+  <main class="pt-36 relative z-10 md:pt-44">
     <section class="relative overflow-hidden">
       <div class="hero-gradient" aria-hidden="true"></div>
-      <div class="container mx-auto px-4 py-32 relative z-10 md:py-40">
-        <div class="max-w-4xl mx-auto text-center">
-          <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-indigo-600/6 text-blue-300 text-base font-medium mb-8 animate-float">🚀 Next-Gen API Platform</span>
-          <h1 class="hero-text text-5xl md:text-7xl font-extrabold leading-tight mb-8 gradient-text animate-neon">Build smarter APIs — grow without limits.</h1>
-          <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed">Jerome GPT memberikan REST API gratis, mudah diintegrasikan, dengan dokumentasi lengkap dan performa tinggi. Cocok untuk developer, hackathon, dan proyek produksi.</p>
-
-          <div class="flex flex-wrap gap-4 justify-center">
-            <a href="https://docs-api.jeromegpt.my.id" class="px-8 py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg cta-shimmer neon-hover btn-primary">📖 Read Docs</a>
-            <a href="/donate" class="px-8 py-4 rounded-xl border border-slate-700 text-slate-200 hover:text-white hover:border-transparent hover:bg-slate-800/80 transition-all neon-hover btn-primary">💖 Donate</a>
+      <div class="container mx-auto px-4 py-36 relative z-10 md:py-44">
+        <div class="max-w-5xl mx-auto text-center animate-fadeIn">
+          <span class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-neonBlue/10 to-neonPurple/10 text-neonBlue text-base font-semibold mb-10 animate-float">🚀 Next-Gen API Platform</span>
+          <h1 class="hero-text text-5xl md:text-7xl font-extrabold leading-tight mb-8 gradient-text animate-neon">Build Smarter APIs — Unleash Infinite Possibilities</h1>
+          <p class="text-xl text-slate-300 max-w-4xl mx-auto mb-12 leading-relaxed animate-fadeIn" style="animation-delay: 0.3s;">Jerome GPT delivers free, high-performance REST APIs with seamless integration and comprehensive documentation. Perfect for developers, hackathons, and production-grade projects.</p>
+          <div class="flex flex-wrap gap-5 justify-center animate-fadeIn" style="animation-delay: 0.6s;">
+            <a href="https://docs-api.jeromegpt.my.id" class="px-10 py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-neonBlue to-neonPurple shadow-xl cta-shimmer neon-hover btn-primary">📖 Explore Docs</a>
+            <a href="/donate" class="px-10 py-4 rounded-xl border border-slate-700 text-slate-200 hover:text-white hover:border-transparent hover:bg-slate-800/90 transition-all neon-hover btn-primary">💖 Support Us</a>
           </div>
-
-          <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8">
-            <div class="glass-card p-8 glow-card">
-              <div class="text-base font-semibold text-blue-300 mb-2">Latency</div>
-              <div class="text-3xl font-bold mb-4">~20-80ms</div>
-              <p class="text-base text-slate-400">Optimized edge routes for low-latency responses.</p>
+          <div class="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-10">
+            <div class="glass-card p-10 glow-card animate-bounce" style="animation-delay: 0.2s;">
+              <div class="text-base font-semibold text-neonBlue mb-3">Latency</div>
+              <div class="text-4xl font-bold mb-4 stats-number">~20-80ms</div>
+              <p class="text-base text-slate-400">Optimized edge routes for lightning-fast responses.</p>
             </div>
-            <div class="glass-card p-8 glow-card">
-              <div class="text-base font-semibold text-blue-300 mb-2">Docs</div>
-              <div class="text-3xl font-bold mb-4">Full REST Endpoints</div>
-              <p class="text-base text-slate-400">Complete documentation, examples and SDKs.</p>
+            <div class="glass-card p-10 glow-card animate-bounce" style="animation-delay: 0.4s;">
+              <div class="text-base font-semibold text-neonBlue mb-3">Docs</div>
+              <div class="text-4xl font-bold mb-4 stats-number">Full REST Endpoints</div>
+              <p class="text-base text-slate-400">Comprehensive docs, examples, and SDKs.</p>
             </div>
-            <div class="glass-card p-8 glow-card">
-              <div class="text-base font-semibold text-blue-300 mb-2">Support</div>
-              <div class="text-3xl font-bold mb-4">24/7</div>
+            <div class="glass-card p-10 glow-card animate-bounce" style="animation-delay: 0.6s;">
+              <div class="text-base font-semibold text-neonBlue mb-3">Support</div>
+              <div class="text-4xl font-bold mb-4 stats-number">24/7</div>
               <p class="text-base text-slate-400">Community & direct support channels.</p>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- decorative floating blobs (more added) -->
-      <div class="float-blob left-10 top-20 bg-gradient-to-br from-blue-500 to-indigo-600" style="transform:translateY(-10px);"></div>
-      <div class="float-blob right-10 bottom-20 bg-gradient-to-br from-purple-500 to-pink-500" style="opacity:.08;transform:translateY(20px)"></div>
-      <div class="float-blob left-1/3 bottom-1/4 bg-gradient-to-br from-green-500 to-blue-500" style="opacity:.12;transform:translateY(10px); animation-delay: 2s;"></div>
-      <div class="float-blob right-1/3 top-1/4 bg-gradient-to-br from-indigo-500 to-purple-500" style="opacity:.1;transform:translateY(-15px); animation-delay: 4s;"></div>
+      <div class="float-blob left-10 top-20 bg-gradient-to-br from-neonBlue to-neonPurple" style="transform:translateY(-10px); animation-delay: 0s;"></div>
+      <div class="float-blob right-10 bottom-20 bg-gradient-to-br from-neonPurple to-pink-500" style="opacity:.1; transform:translateY(20px); animation-delay: 2s;"></div>
+      <div class="float-blob left-1/3 bottom-1/4 bg-gradient-to-br from-green-500 to-neonBlue" style="opacity:.14; transform:translateY(10px); animation-delay: 4s;"></div>
+      <div class="float-blob right-1/3 top-1/4 bg-gradient-to-br from-neonBlue to-neonPurple" style="opacity:.12; transform:translateY(-15px); animation-delay: 6s;"></div>
+      <div class="float-blob left-1/4 top-1/3 bg-gradient-to-br from-pink-500 to-neonPurple" style="opacity:.16; transform:translateY(5px); animation-delay: 1s;"></div>
     </section>
-
-    <!-- FEATURES (improved icons and descriptions) -->
-    <section id="features" class="py-24 md:py-32">
+    
+    <!-- FEATURES -->
+    <section id="features" class="py-28 md:py-36">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
+        <div class="text-center mb-20 animate-fadeIn">
           <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Engineered for Excellence</h2>
-          <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">Infrastructure, docs, and UX built for developers who need reliability and speed.</p>
+          <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">Cutting-edge infrastructure, intuitive docs, and a developer-first experience.</p>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Lightning speed">
-            <div class="flex items-center gap-4 mb-6">
-              <i class="ri-flashlight-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="Lightning speed">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-flashlight-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
               <div>
                 <h3 class="text-xl font-semibold gradient-text mb-2">Lightning Speed</h3>
-                <p class="text-base text-slate-400">Global edge network and smart caching for ultra-fast responses.</p>
+                <p class="text-base text-slate-400">Global edge network with intelligent caching for ultra-low latency.</p>
               </div>
             </div>
           </div>
-
-          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Secure by design">
-            <div class="flex items-center gap-4 mb-6">
-              <i class="ri-shield-check-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="Secure by design">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-shield-check-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
               <div>
                 <h3 class="text-xl font-semibold gradient-text mb-2">Secure by Design</h3>
-                <p class="text-base text-slate-400">Token-based access, advanced rate-control & real-time monitoring.</p>
+                <p class="text-base text-slate-400">Token-based auth, advanced rate-limiting, and real-time monitoring.</p>
               </div>
             </div>
           </div>
-
-          <div class="glass-card p-10 hover:scale-[1.02] transition-transform glow-card" role="article" aria-label="Developer friendly">
-            <div class="flex items-center gap-4 mb-6">
-              <i class="ri-code-box-line text-4xl text-blue-400 animate-pulse" aria-hidden="true"></i>
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="Developer friendly">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-code-box-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
               <div>
                 <h3 class="text-xl font-semibold gradient-text mb-2">Developer Friendly</h3>
-                <p class="text-base text-slate-400">Comprehensive examples, SDK snippets and interactive quickstarts.</p>
+                <p class="text-base text-slate-400">Rich examples, SDK snippets, and interactive quickstarts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="Scalable Infrastructure">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-cloud-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">Scalable Infrastructure</h3>
+                <p class="text-base text-slate-400">Auto-scaling servers for seamless high-traffic handling.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="Community Driven">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-group-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">Community Driven</h3>
+                <p class="text-base text-slate-400">Open-source contributions and vibrant collaboration forums.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card p-12 hover:scale-[1.03] transition-transform glow-card" role="article" aria-label="AI Integration">
+            <div class="flex items-center gap-5 mb-6">
+              <i class="ri-robot-line text-5xl text-neonBlue animate-pulse-fast" aria-hidden="true"></i>
+              <div>
+                <h3 class="text-xl font-semibold gradient-text mb-2">AI Integration</h3>
+                <p class="text-base text-slate-400">Advanced AI endpoints for intelligent data processing.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- API EXAMPLES (improved with more examples and syntax highlighting) -->
-    <section id="examples" class="py-24 md:py-32 bg-slate-900/40 border-t border-b border-slate-800/30">
+    
+    <!-- WHY CHOOSE US -->
+    <section id="why-choose-us" class="py-28 md:py-36 bg-slate-900/50 border-t border-b border-slate-800/40">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">API Examples</h2>
-          <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">Quick code snippets to get you started with our APIs. Note: These are placeholders; refer to docs for actual endpoints.</p>
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Why Choose Jerome GPT?</h2>
+          <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">The preferred API platform for Indonesian developers.</p>
         </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="glass-card p-10 glow-card">
-            <h3 class="text-xl font-semibold gradient-text mb-6">Fetch User Data (JavaScript)</h3>
-            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-javascript"><code>fetch('https://api.jeromegpt.my.id/user')
-  .then(response =&gt; response.json())
-  .then(data =&gt; console.log(data));</code></pre>
+        <div class="grid md:grid-cols-4 gap-10">
+          <div class="glass-card p-10 glow-card text-center">
+            <i class="ri-user-3-line text-6xl text-neonBlue mb-4 animate-bounce"></i>
+            <div class="text-4xl font-bold mb-2 stats-number">10K+</div>
+            <p class="text-base text-slate-400">Active Users</p>
           </div>
-
-          <div class="glass-card p-10 glow-card">
+          <div class="glass-card p-10 glow-card text-center">
+            <i class="ri-server-line text-6xl text-neonBlue mb-4 animate-bounce"></i>
+            <div class="text-4xl font-bold mb-2 stats-number">99.9%</div>
+            <p class="text-base text-slate-400">Uptime</p>
+          </div>
+          <div class="glass-card p-10 glow-card text-center">
+            <i class="ri-global-line text-6xl text-neonBlue mb-4 animate-bounce"></i>
+            <div class="text-4xl font-bold mb-2 stats-number">Global</div>
+            <p class="text-base text-slate-400">Edge Network</p>
+          </div>
+          <div class="glass-card p-10 glow-card text-center">
+            <i class="ri-heart-3-line text-6xl text-neonBlue mb-4 animate-bounce"></i>
+            <div class="text-4xl font-bold mb-2 stats-number">Free</div>
+            <p class="text-base text-slate-400">Forever</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- API EXAMPLES -->
+    <section id="examples" class="py-28 md:py-36 bg-slate-900/50 border-t border-b border-slate-800/40">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">API Examples</h2>
+          <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">Get started with these code snippets. Refer to our docs for complete endpoint details.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="glass-card p-12 glow-card relative">
+            <h3 class="text-xl font-semibold gradient-text mb-6">Fetch User Data (JavaScript)</h3>
+            <pre class="bg-slate-800/70 p-8 rounded-2xl text-sm overflow-x-auto language-javascript"><code>fetch('https://api.jeromegpt.my.id/user')
+  .then(response => response.json())
+  .then(data => console.log(data));</code></pre>
+            <button class="absolute top-4 right-4 px-4 py-1.5 rounded-lg bg-neonBlue text-white text-sm neon-hover copy-btn" data-code="fetch('https://api.jeromegpt.my.id/user')
+  .then(response => response.json())
+  .then(data => console.log(data));">Copy</button>
+          </div>
+          <div class="glass-card p-12 glow-card relative">
             <h3 class="text-xl font-semibold gradient-text mb-6">Post Comment (Python)</h3>
-            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-python"><code>import requests
+            <pre class="bg-slate-800/70 p-8 rounded-2xl text-sm overflow-x-auto language-python"><code>import requests
 response = requests.post('https://api.jeromegpt.my.id/comment', json={'text': 'Hello!'})
 print(response.json())</code></pre>
+            <button class="absolute top-4 right-4 px-4 py-1.5 rounded-lg bg-neonBlue text-white text-sm neon-hover copy-btn" data-code="import requests
+response = requests.post('https://api.jeromegpt.my.id/comment', json={'text': 'Hello!'})
+print(response.json())">Copy</button>
           </div>
-
-          <div class="glass-card p-10 glow-card md:col-span-2">
+          <div class="glass-card p-12 glow-card relative">
             <h3 class="text-xl font-semibold gradient-text mb-6">Search Query (Node.js)</h3>
-            <pre class="bg-slate-800/60 p-6 rounded-2xl text-sm overflow-x-auto language-javascript"><code>const axios = require('axios');
+            <pre class="bg-slate-800/70 p-8 rounded-2xl text-sm overflow-x-auto language-javascript"><code>const axios = require('axios');
 axios.get('https://api.jeromegpt.my.id/search?q=query')
-  .then(response =&gt; console.log(response.data))
-  .catch(error =&gt; console.error(error));</code></pre>
+  .then(response => console.log(response.data))
+  .catch(error => console.error(error));</code></pre>
+            <button class="absolute top-4 right-4 px-4 py-1.5 rounded-lg bg-neonBlue text-white text-sm neon-hover copy-btn" data-code="const axios = require('axios');
+axios.get('https://api.jeromegpt.my.id/search?q=query')
+  .then(response => console.log(response.data))
+  .catch(error => console.error(error));">Copy</button>
+          </div>
+          <div class="glass-card p-12 glow-card relative">
+            <h3 class="text-xl font-semibold gradient-text mb-6">AI Query (Go)</h3>
+            <pre class="bg-slate-800/70 p-8 rounded-2xl text-sm overflow-x-auto language-go"><code>package main
+import ("fmt" "net/http" "io/ioutil")
+func main() {
+  resp, err := http.Get("https://api.jeromegpt.my.id/ai?q=hello")
+  if err != nil { fmt.Println(err) }
+  body, _ := ioutil.ReadAll(resp.Body)
+  fmt.Println(string(body))
+}</code></pre>
+            <button class="absolute top-4 right-4 px-4 py-1.5 rounded-lg bg-neonBlue text-white text-sm neon-hover copy-btn" data-code="package main
+import (&quot;fmt&quot; &quot;net/http&quot; &quot;io/ioutil&quot;)
+func main() {
+  resp, err := http.Get(&quot;https://api.jeromegpt.my.id/ai?q=hello&quot;)
+  if err != nil { fmt.Println(err) }
+  body, _ := ioutil.ReadAll(resp.Body)
+  fmt.Println(string(body))
+}">Copy</button>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- FAQ (improved accordion) -->
-    <section id="faq" class="py-24 md:py-32 bg-slate-900/40 border-t border-slate-800/30">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Frequently Asked Questions</h2>
-          <p class="text-xl text-slate-400">Answers to common questions about the API and usage.</p>
+    
+    <!-- LIVE DEMO -->
+    <section id="live-demo" class="py-28 md:py-36 bg-slate-900/50 border-t border-b border-slate-800/40">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Live AI Demo</h2>
+          <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">Chat with our AI in real-time. Ask anything and get instant responses.</p>
         </div>
-
-        <div class="space-y-6">
-          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+        <div class="max-w-3xl mx-auto">
+          <div class="chat-container glow-card">
+            <div class="chat-messages" id="chat-messages">
+              <div class="chat-message message-ai">AI has been coding for 3 years, starting with web development in 2022, expanding to AI integration in 2023, and specializing in AI development.</div>
+              <div class="chat-message message-user">What about his experience?</div>
+              <div class="chat-message message-ai">AI has extensive experience with various projects, including web development, AI integration, and specialized AI development.</div>
+            </div>
+            <div class="chat-input">
+              <input id="demo-input" type="text" placeholder="Type your message..." class="flex-1 text-sm text-slate-200 focus:outline-none" aria-label="AI Query Input">
+              <button id="demo-btn" class="px-4 py-2 rounded-lg text-sm font-semibold neon-hover btn-primary">
+                <span id="btn-text">Send</span>
+                <span id="btn-spinner" class="spinner hidden ml-2"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-28 md:py-36">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">What Developers Say</h2>
+          <p class="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed">Hear from our vibrant developer community.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="testimonial-card glass-card p-10 glow-card">
+            <p class="text-base text-slate-300 mb-6">"Jerome GPT's APIs have transformed my development process with unmatched speed and reliability!"</p>
+            <div class="flex items-center gap-4">
+              <img src="https://via.placeholder.com/48" alt="John Doe Avatar" class="w-12 h-12 rounded-full border border-neonBlue/30">
+              <div>
+                <div class="text-sm font-semibold text-white">John Doe</div>
+                <div class="text-xs text-slate-400">Frontend Developer</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card glass-card p-10 glow-card">
+            <p class="text-base text-slate-300 mb-6">"The best free API platform for Indonesian developers. A game-changer!"</p>
+            <div class="flex items-center gap-4">
+              <img src="https://via.placeholder.com/48" alt="Jane Smith Avatar" class="w-12 h-12 rounded-full border border-neonBlue/30">
+              <div>
+                <div class="text-sm font-semibold text-white">Jane Smith</div>
+                <div class="text-xs text-slate-400">Backend Engineer</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card glass-card p-10 glow-card">
+            <p class="text-base text-slate-300 mb-6">"Seamless integration and top-notch documentation. Highly recommended!"</p>
+            <div class="flex items-center gap-4">
+              <img src="https://via.placeholder.com/48" alt="Alex Johnson Avatar" class="w-12 h-12 rounded-full border border-neonBlue/30">
+              <div>
+                <div class="text-sm font-semibold text-white">Alex Johnson</div>
+                <div class="text-xs text-slate-400">Full-Stack Developer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-28 md:py-36 bg-slate-900/50 border-t border-slate-800/40">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Frequently Asked Questions</h2>
+          <p class="text-xl text-slate-400">Common questions about our API and how to use it.</p>
+        </div>
+        <div class="space-y-8">
+          <article class="faq-item glass-card p-10 rounded-2xl glow-card cursor-pointer" tabindex="0">
             <header class="flex justify-between items-center faq-head">
               <h3 class="text-xl font-semibold gradient-text">Is this API really free?</h3>
-              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+              <button class="faq-toggle text-2xl text-neonBlue" aria-expanded="false">+</button>
             </header>
-            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Yes — core endpoints are free to use. We appreciate donations to help maintain uptime and improvements.</div>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Yes — core endpoints are free to use. Donations help us maintain uptime and drive improvements.</div>
           </article>
-
-          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+          <article class="faq-item glass-card p-10 rounded-2xl glow-card cursor-pointer" tabindex="0">
             <header class="flex justify-between items-center faq-head">
               <h3 class="text-xl font-semibold gradient-text">Are there any rate limits?</h3>
-              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+              <button class="faq-toggle text-2xl text-neonBlue" aria-expanded="false">+</button>
             </header>
-            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">For most public endpoints there is generous allowance, but very high-volume usage may be subject to rate-control to protect service quality for everyone.</div>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Public endpoints have generous limits, with rate controls for high-volume usage to ensure service quality.</div>
           </article>
-
-          <article class="faq-item glass-card p-8 rounded-2xl glow-card cursor-pointer" tabindex="0">
+          <article class="faq-item glass-card p-10 rounded-2xl glow-card cursor-pointer" tabindex="0">
             <header class="flex justify-between items-center faq-head">
               <h3 class="text-xl font-semibold gradient-text">How can I contribute?</h3>
-              <button class="faq-toggle text-2xl text-blue-300" aria-expanded="false">+</button>
+              <button class="faq-toggle text-2xl text-neonBlue" aria-expanded="false">+</button>
             </header>
-            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">You can contribute by sending PRs to our GitHub, or via donations. See the contributor section for details.</div>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Contribute via GitHub PRs or donations. Check our contributor section for more details.</div>
+          </article>
+          <article class="faq-item glass-card p-10 rounded-2xl glow-card cursor-pointer" tabindex="0">
+            <header class="flex justify-between items-center faq-head">
+              <h3 class="text-xl font-semibold gradient-text">Does it support AI features?</h3>
+              <button class="faq-toggle text-2xl text-neonBlue" aria-expanded="false">+</button>
+            </header>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">Yes, we offer advanced AI endpoints for natural language processing and more.</div>
+          </article>
+          <article class="faq-item glass-card p-10 rounded-2xl glow-card cursor-pointer" tabindex="0">
+            <header class="flex justify-between items-center faq-head">
+              <h3 class="text-xl font-semibold gradient-text">How secure is the API?</h3>
+              <button class="faq-toggle text-2xl text-neonBlue" aria-expanded="false">+</button>
+            </header>
+            <div class="faq-answer text-slate-300 pt-4 text-base leading-relaxed">We ensure security with HTTPS, token authentication, and regular audits.</div>
           </article>
         </div>
       </div>
     </section>
-
-    <!-- FOOTER (improved layout) -->
-    <footer class="py-16 bg-slate-900/50">
+    
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="py-28 md:py-36 bg-slate-900/50 border-t border-b border-slate-800/40">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="text-center mb-20 animate-fadeIn">
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text animate-neon mb-4">Stay in the Loop</h2>
+          <p class="text-xl text-slate-400">Join our newsletter for updates, tips, and exclusive offers.</p>
+        </div>
+        <form id="newsletter-form" class="flex flex-col md:flex-row gap-5 justify-center newsletter-form glass-card p-6 rounded-2xl">
+          <input type="email" id="newsletter-email" placeholder="Enter your email" class="flex-1 px-5 py-4 rounded-xl glass-card text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-neonBlue" required aria-label="Email Address">
+          <button type="submit" class="px-10 py-4 rounded-xl text-white font-semibold bg-gradient-to-r from-neonBlue to-neonPurple shadow-xl cta-shimmer neon-hover btn-primary flex items-center gap-3">
+            <span id="newsletter-btn-text">Subscribe</span>
+            <span id="newsletter-btn-spinner" class="spinner hidden"></span>
+          </button>
+        </form>
+        <div id="newsletter-subscribers" class="mt-8 text-center text-slate-400 text-sm hidden">
+          <p>Join <span id="subscriber-count">0</span> subscribers!</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="py-20 bg-slate-900/60">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-12 items-start">
+        <div class="grid md:grid-cols-4 gap-14 items-start">
           <div>
-            <div class="flex items-center gap-3 mb-6">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg glow-card">
-                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-neonBlue to-neonPurple flex items-center justify-center shadow-xl glow-card animate-rotateGlow">
+                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
               <div>
                 <div class="text-xl font-bold gradient-text">Jerome GPT</div>
                 <div class="text-sm text-slate-400">Free Public API • Indonesia</div>
               </div>
             </div>
-            <p class="text-base text-slate-400 mb-6 leading-relaxed">Built for developers — open, fast, and reliable. © 2025 Jerome GPT. All rights reserved.</p>
-
-            <div class="flex gap-4">
-              <a href="https://github.com/zura-stpflo" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="Github"><i class="ri-github-fill text-xl"></i></a>
-              <a href="https://www.instagram.com/panggilajarazz_tech" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="Instagram"><i class="ri-instagram-fill text-xl"></i></a>
-              <a href="https://www.linkedin.com/in/jeromegpt" class="p-3 rounded-lg bg-slate-800/60 hover:bg-slate-800/80 neon-hover transition-all" aria-label="LinkedIn"><i class="ri-linkedin-fill text-xl"></i></a>
+            <p class="text-base text-slate-400 mb-6 leading-relaxed">Empowering developers with open, fast, and reliable APIs. © 2025 Jerome GPT. All rights reserved.</p>
+            <div class="flex gap-5">
+              <a href="https://github.com/zura-stpflo" class="p-3 rounded-lg bg-slate-800/70 hover:bg-slate-800/90 neon-hover transition-all" aria-label="Github"><i class="ri-github-fill text-xl"></i></a>
+              <a href="https://www.instagram.com/panggilajarazz_tech" class="p-3 rounded-lg bg-slate-800/70 hover:bg-slate-800/90 neon-hover transition-all" aria-label="Instagram"><i class="ri-instagram-fill text-xl"></i></a>
+              <a href="https://www.linkedin.com/in/jeromegpt" class="p-3 rounded-lg bg-slate-800/70 hover:bg-slate-800/90 neon-hover transition-all" aria-label="LinkedIn"><i class="ri-linkedin-fill text-xl"></i></a>
+              <a href="https://twitter.com/jeromegpt" class="p-3 rounded-lg bg-slate-800/70 hover:bg-slate-800/90 neon-hover transition-all" aria-label="Twitter"><i class="ri-twitter-fill text-xl"></i></a>
             </div>
           </div>
-
           <div>
             <h4 class="text-xl font-bold gradient-text mb-4">Support</h4>
             <ul class="text-base text-slate-400 space-y-3">
@@ -387,31 +692,38 @@ axios.get('https://api.jeromegpt.my.id/search?q=query')
               <li><a href="/donate" class="hover:text-white neon-hover transition-colors">Donate</a></li>
             </ul>
           </div>
-
+          <div>
+            <h4 class="text-xl font-bold gradient-text mb-4">Resources</h4>
+            <ul class="text-base text-slate-400 space-y-3">
+              <li><a href="https://docs-api.jeromegpt.my.id" class="hover:text-white neon-hover transition-colors">Documentation</a></li>
+            </ul>
+          </div>
           <div>
             <h4 class="text-xl font-bold gradient-text mb-4">Legal</h4>
             <ul class="text-base text-slate-400 space-y-3">
-              <li><a href="/tos" class="hover:text-white neon-hover transition-colors">Terms</a></li>
+              <li><a href="/tos" class="hover:text-white neon-hover transition-colors">Terms Of Service</a></li>
               <li><a href="https://www.termsfeed.com/live/7121753b-7c61-4464-8250-5ca192ac93da" class="hover:text-white neon-hover transition-colors">Privacy Policy</a></li>
               <li><a href="https://www.cisa.gov/" class="hover:text-white neon-hover transition-colors">Security</a></li>
             </ul>
           </div>
         </div>
-
-        <div class="border-t border-slate-800/30 mt-12 pt-8 text-center text-slate-400 text-base">Made with ❤️ by Jerome GPT Team • © 2025</div>
+        <div class="border-t border-slate-800/40 mt-12 pt-8 text-center text-slate-400 text-base">Made with ❤️ by Jerome GPT Team • © 2025</div>
       </div>
     </footer>
   </main>
-
-  <!-- INLINE SCRIPTS: menu, faq, header shadow, particles (optimized) -->
+  
+  <button id="back-to-top" class="back-to-top p-4 rounded-full bg-gradient-to-r from-neonBlue to-neonPurple text-white shadow-xl neon-hover btn-primary hidden" aria-label="Back to top">
+    <i class="ri-arrow-up-line text-2xl"></i>
+  </button>
+  
   <script>
     (function(){
-      // Mobile menu toggle
+      let subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers')) || [];
+      
       const btn = document.getElementById('btn-mobile');
       const menu = document.getElementById('mobile-menu');
       const ham = document.getElementById('hamburger');
       const close = document.getElementById('close');
-
       btn?.addEventListener('click', () => {
         const opened = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!opened));
@@ -419,15 +731,13 @@ axios.get('https://api.jeromegpt.my.id/search?q=query')
         ham.classList.toggle('hidden');
         close.classList.toggle('hidden');
       });
-
-      // Sticky nav shadow on scroll
+      
       const header = document.querySelector('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 12) header.classList.add('shadow-xl');
         else header.classList.remove('shadow-xl');
       });
-
-      // FAQ toggle
+      
       document.querySelectorAll('.faq-item').forEach(item => {
         const head = item.querySelector('.faq-head');
         const toggle = item.querySelector('.faq-toggle');
@@ -436,29 +746,26 @@ axios.get('https://api.jeromegpt.my.id/search?q=query')
           toggle.textContent = open ? '-' : '+';
           toggle.setAttribute('aria-expanded', String(open));
         });
-        // Keyboard support
         item.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') head.click(); });
       });
-
-      // Reveal animations
+      
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.hero-text, .glass-card, .cta-shimmer').forEach((el, i) => {
+        document.querySelectorAll('.hero-text, .glass-card, .cta-shimmer, .testimonial-card').forEach((el, i) => {
           el.style.opacity = 0;
           el.style.transform = 'translateY(12px)';
           setTimeout(() => {
-            el.style.transition = 'all .6s cubic-bezier(.2,.9,.2,1)';
+            el.style.transition = 'all .7s cubic-bezier(.2,.9,.2,1)';
             el.style.opacity = 1;
             el.style.transform = 'none';
-          }, 150 + i * 100);
+          }, 150 + i * 120);
         });
+        updateSubscriberCount();
       });
-
-      // Particles background (optimized performance)
+      
       const canvas = document.getElementById('bg-canvas');
       const ctx = canvas.getContext('2d');
       let particles = [];
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
-
       function resize() {
         canvas.width = window.innerWidth * DPR;
         canvas.height = window.innerHeight * DPR;
@@ -466,89 +773,253 @@ axios.get('https://api.jeromegpt.my.id/search?q=query')
         canvas.style.height = window.innerHeight + 'px';
         ctx.scale(DPR, DPR);
       }
-
       function rand(min, max) { return Math.random() * (max - min) + min; }
-
       function initParticles() {
         particles = [];
-        const count = Math.round((window.innerWidth * window.innerHeight) / 50000); // Adjusted density
+        const count = Math.round((window.innerWidth * window.innerHeight) / 35000);
         for (let i = 0; i < count; i++) {
           particles.push({
             x: rand(0, window.innerWidth),
             y: rand(0, window.innerHeight),
-            r: rand(1, 4),
-            vx: rand(-0.3, 0.3),
-            vy: rand(-0.15, 0.15),
+            r: rand(1.5, 6),
+            vx: rand(-0.5, 0.5),
+            vy: rand(-0.3, 0.3),
             hue: rand(180, 300),
-            alpha: rand(0.05, 0.2),
-            pulse: rand(0.8, 1.8)
+            alpha: rand(0.15, 0.35),
+            pulse: rand(0.7, 2.2)
           });
         }
       }
-
       let lastTime = 0;
       function draw(time) {
-        if (time - lastTime < 16) { // Throttle to ~60fps
+        if (time - lastTime < 16) {
           requestAnimationFrame(draw);
           return;
         }
         lastTime = time;
-
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        // Subtle gradient overlay
         const g = ctx.createLinearGradient(0, 0, window.innerWidth, window.innerHeight);
-        g.addColorStop(0, 'rgba(12,18,40,0.05)');
-        g.addColorStop(1, 'rgba(30,10,35,0.05)');
+        g.addColorStop(0, 'rgba(12,18,40,0.12)');
+        g.addColorStop(1, 'rgba(30,10,35,0.12)');
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
         for (const p of particles) {
           p.x += p.vx; p.y += p.vy;
           if (p.x < -20) p.x = window.innerWidth + 20;
           if (p.x > window.innerWidth + 20) p.x = -20;
           if (p.y < -20) p.y = window.innerHeight + 20;
           if (p.y > window.innerHeight + 20) p.y = -20;
-
-          // Pulsing size
-          p.r = Math.abs(Math.sin(time / (1000 * p.pulse)) * 2 + 1.5);
-
+          p.r = Math.abs(Math.sin(time / (1000 * p.pulse)) * 3 + 2);
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${p.hue},80%,70%,${p.alpha})`;
+          ctx.fillStyle = `hsla(${p.hue},95%,80%,${p.alpha})`;
           ctx.fill();
         }
-
-        // Enhanced connections (optimized)
         if (window.innerWidth > 768) {
-          for (let i = 0; i < particles.length; i += 2) { // Skip every other for perf
+          for (let i = 0; i < particles.length; i += 2) {
             for (let j = i + 1; j < particles.length; j += 2) {
               const a = particles[i]; const b = particles[j];
               const dx = a.x - b.x, dy = a.y - b.y;
               const d = Math.sqrt(dx * dx + dy * dy);
-              if (d < 160) {
+              if (d < 200) {
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-                ctx.strokeStyle = `rgba(120,120,200,${(1 - d / 160) * 0.08})`;
-                ctx.lineWidth = 1.2; ctx.stroke();
+                ctx.strokeStyle = `rgba(140,140,220,${(1 - d / 200) * 0.12})`;
+                ctx.lineWidth = 2; ctx.stroke();
               }
             }
           }
         }
-
         requestAnimationFrame(draw);
       }
-
-      // Init & run
       function startBG() {
         resize(); initParticles(); requestAnimationFrame(draw);
       }
       window.addEventListener('resize', () => { resize(); initParticles(); });
-
-      // Respect reduced motion
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
       if (!reduce.matches) { startBG(); }
-
+      
+      function showToast(message, type = 'info') {
+        const toast = document.getElementById('toast');
+        const icon = type === 'success' ? '<i class="ri-checkbox-circle-fill icon"></i>' : 
+                    type === 'error' ? '<i class="ri-error-warning-fill icon"></i>' : 
+                    '<i class="ri-information-fill icon"></i>';
+        toast.innerHTML = `${icon} ${message}`;
+        toast.className = `toast ${type}`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3500);
+      }
+      
+      document.querySelectorAll('.copy-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const code = this.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            showToast('Code copied successfully!', 'success');
+          }).catch(err => {
+            showToast('Failed to copy code', 'error');
+            console.error('Failed to copy: ', err);
+          });
+        });
+      });
+      
+      async function callApi() {
+        const input = document.getElementById('demo-input');
+        const messagesContainer = document.getElementById('chat-messages');
+        const btn = document.getElementById('demo-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        
+        const prompt = input.value.trim();
+        if (!prompt) {
+          showToast('Please enter a valid question', 'error');
+          return;
+        }
+        
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chat-message message-user';
+        userMessage.textContent = prompt;
+        messagesContainer.appendChild(userMessage);
+        
+        // Add typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.innerHTML = `
+          <span></span>
+          <span></span>
+          <span></span>
+        `;
+        messagesContainer.appendChild(typingIndicator);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        // Clear input
+        input.value = '';
+        
+        // Disable button and show loading
+        btn.disabled = true;
+        btnText.textContent = 'Sending...';
+        btnSpinner.classList.remove('hidden');
+        
+        try {
+          const response = await fetch(`https://docs-api.jeromegpt.my.id/ai/grok?question=${encodeURIComponent(prompt)}`);
+          const data = await response.json();
+          
+          // Remove typing indicator
+          messagesContainer.removeChild(typingIndicator);
+          
+          // Add AI response
+          const aiMessage = document.createElement('div');
+          aiMessage.className = 'chat-message message-ai';
+          aiMessage.textContent = data.result || 'No response available';
+          messagesContainer.appendChild(aiMessage);
+          
+          // Scroll to bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          
+          showToast('Message sent successfully!', 'success');
+        } catch (error) {
+          console.error('API call error:', error);
+          
+          // Remove typing indicator
+          messagesContainer.removeChild(typingIndicator);
+          
+          // Add error message
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'chat-message message-ai';
+          errorMessage.textContent = `Error: ${error.message || 'Failed to get response'}`;
+          messagesContainer.appendChild(errorMessage);
+          
+          // Scroll to bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          
+          showToast('Error calling API. Please try again.', 'error');
+        } finally {
+          // Re-enable button and hide loading
+          btn.disabled = false;
+          btnText.textContent = 'Send';
+          btnSpinner.classList.add('hidden');
+          
+          // Focus back on input
+          input.focus();
+        }
+      }
+      
+      const demoBtn = document.getElementById('demo-btn');
+      const demoInput = document.getElementById('demo-input');
+      
+      if (demoBtn && demoInput) {
+        // Send on button click
+        demoBtn.addEventListener('click', callApi);
+        
+        // Send on Enter key (but not Shift+Enter for new line)
+        demoInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            callApi();
+          }
+        });
+      }
+      
+      document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('newsletter-email');
+        const btnText = document.getElementById('newsletter-btn-text');
+        const btnSpinner = document.getElementById('newsletter-btn-spinner');
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+          showToast('Please enter a valid email address', 'error');
+          return;
+        }
+        
+        btnText.textContent = 'Subscribing...';
+        btnSpinner.classList.remove('hidden');
+        
+        setTimeout(() => {
+          if (subscribers.includes(email)) {
+            showToast('You are already subscribed!', 'info');
+          } else {
+            subscribers.push(email);
+            localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+            updateSubscriberCount();
+            showToast('Successfully subscribed! Welcome aboard!', 'success');
+            emailInput.value = '';
+          }
+          
+          btnText.textContent = 'Subscribe';
+          btnSpinner.classList.add('hidden');
+        }, 1200);
+      });
+      
+      function updateSubscriberCount() {
+        const countElement = document.getElementById('subscriber-count');
+        const container = document.getElementById('newsletter-subscribers');
+        
+        if (subscribers.length > 0) {
+          container.classList.remove('hidden');
+          countElement.textContent = subscribers.length;
+        }
+      }
+      
+      const backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.remove('hidden');
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+          backToTop.classList.add('hidden');
+        }
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   </script>
 </body>
-</html>
+</html>   
