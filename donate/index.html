@@ -1,752 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DONATE - JeromeGPT API's</title>
-    <link rel="icon" href="https://files.catbox.moe/juvgct.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #00f0ff;
-            --secondary: #0084ff;
-            --accent: #ff00e4;
-            --dark: #0a0a1a;
-            --light: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --neon-glow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --success: #00ff88;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .neon-circle, .neon-circle2 {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .neon-circle {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .neon-circle2 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, var(--accent), transparent 70%);
-            bottom: -300px;
-            left: -300px;
-            animation: float2 15s ease-in-out infinite;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .futuristic-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding: 1.5rem;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .holographic-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: var(--neon-glow);
-            line-height: 1;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .holographic-logo.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .holographic-logo span {
-            margin-right: 0.5rem;
-        }
-
-        .tagline {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 2px;
-            margin-top: 0.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: var(--transition) 0.3s;
-        }
-
-        .tagline.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .holographic-btn {
-            position: relative;
-            background: linear-gradient(135deg, var(--glass), rgba(0, 240, 255, 0.1));
-            border: 1px solid var(--glass-border);
-            color: var(--light);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .holographic-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.3);
-        }
-
-        .holographic-btn:active {
-            transform: translateY(0);
-        }
-
-        .holographic-btn .btn-hover-effect {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .holographic-btn:hover .btn-hover-effect {
-            left: 100%;
-        }
-
-        .dashboard-btn {
-            background: linear-gradient(135deg, #ff3333, #cc0000);
-            border: none;
-        }
-
-        .dashboard-btn:hover {
-            background: linear-gradient(135deg, #cc0000, #990000);
-            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.3);
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--light);
-            text-shadow: var(--neon-glow);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .section-title.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .donation-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .donation-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .donation-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1);
-        }
-
-        .qris-card {
-            border-top: 4px solid #ff6600;
-        }
-
-        .payment-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            padding: 0.5rem;
-        }
-
-        .payment-icon img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .donation-info {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .donation-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .donation-info p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .qris-image-container {
-            width: 250px;
-            height: 250px;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1.5rem auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .qris-image-container:hover {
-            transform: scale(1.05);
-        }
-
-        .qris-image-container.zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.8);
-            z-index: 2000;
-            width: 300px;
-            height: 300px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .qris-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .zoom-indicator {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .qris-image-container:hover .zoom-indicator {
-            opacity: 1;
-        }
-
-        .holographic-effect {
-            position: relative;
-            border: 2px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-            animation: holographic-pulse 3s infinite;
-        }
-
-        .scan-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: linear-gradient(to bottom, 
-                rgba(0, 240, 255, 0) 0%, 
-                rgba(0, 240, 255, 0.8) 50%, 
-                rgba(0, 240, 255, 0) 100%);
-            animation: scan 3s linear infinite;
-            opacity: 0.7;
-        }
-
-        .donation-progress {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: var(--glass);
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .donation-progress h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--light);
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.5s ease-in-out;
-        }
-
-        .progress-text {
-            margin-top: 0.5rem;
-            color: var(--light);
-            font-size: 1rem;
-        }
-
-        .donor-list {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: var(--glass);
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .donor-list h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--light);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .donor-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .donor-item:last-child {
-            border-bottom: none;
-        }
-
-        .donor-name {
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .donor-amount {
-            color: var(--success);
-        }
-
-        .popup {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--success);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            z-index: 10000;
-            display: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .popup.error {
-            background: #f87171;
-        }
-
-        .donation-input {
-            margin: 1rem auto;
-            max-width: 300px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .donation-input input {
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-            background: var(--glass);
-            color: var(--light);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-        }
-
-        .donation-input input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .donation-input button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            color: var(--light);
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .donation-input button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.3);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-20px, -20px); }
-        }
-
-        @keyframes holographic-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.8); }
-        }
-
-        @keyframes scan {
-            0% { top: -10px; }
-            100% { top: 100%; }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .futuristic-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .holographic-logo {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .qris-image-container.zoomed {
-                transform: translate(-50%, -50%) scale(1.5);
-                width: 280px;
-                height: 280px;
-            }
-
-            .donor-list {
-                padding: 1rem;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DONATE — JeromeGPT API</title>
+  <meta name="description" content="Support JeromeGPT API with your donation via QRIS. Empower AI innovation with your contribution.">
+  <link rel="icon" href="https://files.catbox.moe/juvgct.png" type="image/png">
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #00f0ff;
+      --secondary: #0084ff;
+      --accent: #ff00e4;
+      --dark: #0a0a1a;
+      --light: #ffffff;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --neon-glow: 0 0 8px var(--primary), 0 0 18px var(--primary), 0 0 30px var(--primary);
+      --transition: all 0.35s ease;
+      --success: #00ff88;
+      --error: #f87171;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #particles-js {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+
+    /* Neon background */
+    .neon-circle, .neon-circle2 {
+      position: fixed; border-radius: 50%; filter: blur(60px);
+      opacity: 0.15; z-index: -1;
+    }
+    .neon-circle {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: -150px; right: -150px;
+      animation: float 12s ease-in-out infinite;
+    }
+    .neon-circle2 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      bottom: -250px; left: -250px;
+      animation: float2 15s ease-in-out infinite;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+    /* Header */
+    header.futuristic-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 1.5rem;
+      background: var(--glass); backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border); border-radius: 16px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    .holographic-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: var(--neon-glow);
+    }
+    .tagline {
+      font-size: .9rem; color: rgba(255,255,255,.7);
+      margin-top: .3rem; letter-spacing: 2px;
+    }
+    .holographic-btn {
+      padding: .7rem 1.3rem; border-radius: 8px;
+      background: linear-gradient(135deg, #ff3333, #cc0000);
+      color: white; font-family: 'Orbitron';
+      font-weight: 500; text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,.25);
+    }
+    .holographic-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,51,51,.4);
+    }
+
+    h2.section-title {
+      font-family: 'Orbitron'; font-size: 2rem;
+      text-align: center; margin-bottom: 2rem;
+      text-shadow: var(--neon-glow);
+    }
+
+    /* Cards */
+    .donation-progress, .donation-card, .donor-list, .leaderboard {
+      background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border); border-radius: 16px;
+      padding: 1.5rem; margin-bottom: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    .donation-progress h3, .donor-list h3, .leaderboard h3 {
+      font-family: 'Orbitron'; margin-bottom: 1rem;
+    }
+
+    /* Progress */
+    .progress-bar {
+      height: 20px; border-radius: 10px; overflow: hidden;
+      background: rgba(255,255,255,.1);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width .5s ease;
+    }
+    .progress-text { margin-top: .6rem; text-align: center; }
+
+    /* Donation card */
+    .donation-card { text-align: center; }
+    .payment-icon img { width: 70px; }
+    .donation-input {
+      margin: 1rem auto; max-width: 320px;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .donation-input input {
+      padding: .7rem; border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass); color: white;
+    }
+    .donation-input button {
+      padding: .7rem; border-radius: 8px; border: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white; font-family: 'Orbitron';
+      cursor: pointer; transition: var(--transition);
+    }
+    .donation-input button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,240,255,.35);
+    }
+
+    /* QRIS box */
+    .qris-image-container {
+      width: 220px; height: 220px;
+      margin: 1.5rem auto;
+      background: white; padding: 1rem; border-radius: 10px;
+      cursor: pointer; transition: transform .3s;
+    }
+    .qris-image-container:hover { transform: scale(1.05); }
+    .qris-image-container img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* Donor list */
+    .donor-item {
+      display: flex; justify-content: space-between;
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .donor-item:last-child { border-bottom: none; }
+    .donor-name { color: var(--primary); font-family: 'Orbitron'; }
+    .donor-amount { color: var(--success); }
+
+    /* Popup */
+    .popup {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 20px; border-radius: 8px;
+      color: white; z-index: 1000; display: none;
+    }
+    .popup.success { background: var(--success); }
+    .popup.error { background: var(--error); }
+
+    /* Modal */
+    .modal {
+      display: none; position: fixed; z-index: 2000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,.9);
+      align-items: center; justify-content: center;
+    }
+    .modal img {
+      max-width: 90%; max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,240,255,.7);
+    }
+    .close-btn {
+      position: absolute; top: 20px; right: 30px;
+      color: white; font-size: 2rem; cursor: pointer; transition: .3s;
+    }
+    .close-btn:hover { color: var(--primary); }
+
+    /* Leaderboard */
+    .leaderboard ul { list-style: none; }
+    .leaderboard li {
+      display: flex; justify-content: space-between;
+      padding: .4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .leaderboard li:last-child { border-bottom: none; }
+    .leader-name { color: var(--accent); }
+    .leader-amount { color: var(--success); }
+
+    /* Animations */
+    @keyframes float { 0%,100%{transform:translate(0,0);} 50%{transform:translate(20px,20px);} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-20px,-20px);} }
+
+    @media(max-width:768px){
+      header.futuristic-header {
+        flex-direction: column; gap: 1rem; text-align: center;
+      }
+      .holographic-logo { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="neon-circle"></div>
-    <div class="neon-circle2"></div>
+  <div id="particles-js"></div>
+  <div class="neon-circle"></div>
+  <div class="neon-circle2"></div>
 
-    <div class="container">
-        <header class="futuristic-header">
-            <div class="logo-container">
-                <div class="holographic-logo">
-                    <span>DONATE</span>
-                    <span>JeromeGPT API's</span>
-                </div>
-                <p class="tagline">Empower Our AI Innovation with Your Support</p>
-            </div>
-            <a href="/dashboard" class="holographic-btn dashboard-btn">
-                <span>BACK TO DASHBOARD</span>
-                <div class="btn-hover-effect"></div>
-            </a>
-        </header>
+  <div class="container">
+    <!-- Header -->
+    <header class="futuristic-header">
+      <div>
+        <div class="holographic-logo">DONATE — JeromeGPT API</div>
+        <p class="tagline">Empower Our AI Innovation with Your Support</p>
+      </div>
+      <a href="/dashboard" class="holographic-btn">
+        <i class="fa fa-arrow-left"></i> BACK TO DASHBOARD
+      </a>
+    </header>
 
-        <main>
-            <h2 class="section-title">SUPPORT US WITH QRIS</h2>
+    <main>
+      <!-- Section Title -->
+      <h2 class="section-title">SUPPORT US WITH QRIS</h2>
 
-            <div class="donation-progress">
-                <h3>Donation Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 63.12%"></div>
-                </div>
-                <p class="progress-text" id="progressText">Rp 157,800 / Rp 250,000</p>
-            </div>
+      <!-- Donation Progress -->
+      <div class="donation-progress">
+        <h3>Donation Progress</h3>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-text" id="progressText"></p>
+      </div>
 
-            <div class="donation-card qris-card">
-                <div class="payment-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QRIS">
-                </div>
-                <div class="donation-info">
-                    <h3>Donate via QRIS</h3>
-                    <p>Your support fuels our mission to advance AI technology and deliver innovative solutions. Enter your donation amount and scan the QR code below to contribute!</p>
-                    <div class="donation-input">
-                        <input type="text" id="donorName" placeholder="Your Name (optional)">
-                        <input type="number" id="donationAmount" placeholder="Enter amount (Rp)" min="1000">
-                        <button id="submitDonation">Submit Donation</button>
-                    </div>
-                    <div class="qris-image-container holographic-effect" id="qris-zoom-container">
-                        <img id="qris-image" src="https://files.catbox.moe/ug5jm6.png" alt="QRIS Code">
-                        <div class="scan-animation"></div>
-                        <div class="zoom-indicator">Click to zoom</div>
-                    </div>
-                    <div class="transaction-info">
-                        <div class="info-row">
-                            <span><i class="fas fa-money-bill-wave"></i> Merchant:</span>
-                            <span class="neon-id">JeromeGPT API's</span>
-                        </div>
-                        <div class="info-row">
-                            <span><i class="fas fa-id-card"></i> Name:</span>
-                            <span class="neon-id">Jerome</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Donation Card -->
+      <div class="donation-card">
+        <div class="payment-icon">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QRIS">
+        </div>
+        <h3>Donate via QRIS</h3>
+        <p>Enter your donation and scan the QR code to support us!</p>
 
-            <div class="donor-list">
-                <h3>Top Supporters</h3>
-                <div id="donorList"></div>
-            </div>
-        </main>
-    </div>
+        <div class="donation-input">
+          <input type="text" id="donorName" placeholder="Your Name (optional)">
+          <input type="number" id="donationAmount" placeholder="Enter amount (Rp)" min="1000">
+          <button id="submitDonation"><i class="fa fa-heart"></i> Submit Donation</button>
+        </div>
 
-    <div class="popup" id="popupNotifikasi"></div>
+        <div class="qris-image-container" id="qrisBox">
+          <img src="https://files.catbox.moe/ug5jm6.png" alt="QRIS Code" id="qrisImg">
+        </div>
+      </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Particles.js
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#00f0ff" },
-                    "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
-                    "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                    "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#00f0ff", "opacity": 0.2, "width": 1 },
-                    "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
-                },
-                "retina_detect": true
-            });
+      <!-- Donor List -->
+      <div class="donor-list">
+        <h3>Recent Supporters</h3>
+        <div id="donorList"></div>
+      </div>
 
-            // QR Code Zoom Functionality
-            const qrisContainer = document.getElementById('qris-zoom-container');
-            let isZoomed = false;
+      <!-- Leaderboard -->
+      <div class="leaderboard">
+        <h3>Top Supporters</h3>
+        <ul id="leaderList"></ul>
+      </div>
+    </main>
+  </div>
 
-            qrisContainer.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (isZoomed) {
-                    this.classList.remove('zoomed');
-                    isZoomed = false;
-                } else {
-                    this.classList.add('zoomed');
-                    isZoomed = true;
-                }
-            });
+  <!-- QRIS Modal -->
+  <div id="qrisModal" class="modal">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <img id="qrisZoom" src="https://files.catbox.moe/ug5jm6.png" alt="QRIS Zoom">
+  </div>
 
-            document.addEventListener('click', function(e) {
-                if (isZoomed && !e.target.closest('.qris-image-container')) {
-                    qrisContainer.classList.remove('zoomed');
-                    isZoomed = false;
-                }
-            });
+  <!-- Popup -->
+  <div class="popup" id="popup"></div>
 
-            // Donation Data Management
-            const TARGET_DONATION = 250000;
-            let totalDonated = 157800; // Fixed donation amount
-            let donations = JSON.parse(localStorage.getItem('donations')) || [
-                { name: "Supporter 1", amount: 50000, timestamp: new Date().toLocaleString() },
-                { name: "Supporter 2", amount: 37800, timestamp: new Date().toLocaleString() },
-                { name: "Supporter 3", amount: 70000, timestamp: new Date().toLocaleString() }
-            ];
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* Particles */
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 60 },
+          color: { value: "#00f0ff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true, distance: 150,
+            color: "#00f0ff", opacity: 0.2, width: 1
+          },
+          move: { enable: true, speed: 1, random: true }
+        },
+        retina_detect: true
+      });
 
-            function saveDonation(name, amount) {
-                if (!amount || amount < 1000) {
-                    showPopup('Please enter a valid donation amount (minimum Rp 1,000)', true);
-                    return;
-                }
-                const donorName = name || `Anonymous ${donations.length + 1}`;
-                const donation = { name: donorName, amount: parseInt(amount), timestamp: new Date().toLocaleString() };
-                donations.push(donation);
-                totalDonated += donation.amount;
-                localStorage.setItem('donations', JSON.stringify(donations));
-                updateDonationUI();
-                showPopup(`Thank you, ${donorName}, for your Rp ${amount.toLocaleString('id-ID')} donation!`, false);
-            }
+      const popup = document.getElementById("popup");
+      let donations = JSON.parse(localStorage.getItem("donations")) || [];
+      let totalDonated = donations.reduce((sum, d) => sum + d.amount, 0);
 
-            function updateDonationUI() {
-                const progressPercentage = Math.min((totalDonated / TARGET_DONATION) * 100, 100);
-                document.getElementById('progressFill').style.width = `${progressPercentage}%`;
-                document.getElementById('progressText').textContent = `Rp ${totalDonated.toLocaleString('id-ID')} / Rp ${TARGET_DONATION.toLocaleString('id-ID')}`;
+      /* Dynamic Target per Month */
+      const baseTarget = 250000;
+      const startDate = new Date("2025-01-01");
+      const now = new Date();
+      const monthDiff = (now.getFullYear() - startDate.getFullYear()) * 12 + (now.getMonth() - startDate.getMonth());
+      const targetDonation = baseTarget + (monthDiff * 100000);
 
-                const donorList = document.getElementById('donorList');
-                donorList.innerHTML = '';
-                donations.slice(-5).reverse().forEach(donation => {
-                    const donorItem = document.createElement('div');
-                    donorItem.className = 'donor-item';
-                    donorItem.innerHTML = `
-                        <span class="donor-name">${donation.name}</span>
-                        <span class="donor-amount">Rp ${donation.amount.toLocaleString('id-ID')}</span>
-                    `;
-                    donorList.appendChild(donorItem);
-                });
-            }
+      function updateUI() {
+        const percent = Math.min((totalDonated / targetDonation) * 100, 100);
+        document.getElementById("progressFill").style.width = percent + "%";
+        document.getElementById("progressText").textContent =
+          `Rp ${totalDonated.toLocaleString("id-ID")} / Rp ${targetDonation.toLocaleString("id-ID")}`;
 
-            // Donation Form Submission
-            const submitButton = document.getElementById('submitDonation');
-            submitButton.addEventListener('click', function() {
-                const donorName = document.getElementById('donorName').value.trim();
-                const donationAmount = document.getElementById('donationAmount').value;
-                saveDonation(donorName, donationAmount);
-                document.getElementById('donorName').value = '';
-                document.getElementById('donationAmount').value = '';
-            });
-
-            // Notification Popup
-            function showPopup(message, isError = false) {
-                const popup = document.getElementById('popupNotifikasi');
-                popup.textContent = message;
-                popup.className = 'popup' + (isError ? ' error' : '');
-                popup.style.display = 'block';
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 3000);
-            }
-
-            // Scroll Animations
-            const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.donation-card, .section-title, .donation-progress, .donor-list');
-                const windowHeight = window.innerHeight;
-
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-
-                    if (elementPosition < windowHeight - elementVisible) {
-                        element.classList.add('animate');
-                    }
-                });
-            };
-
-            setTimeout(() => {
-                document.querySelector('.holographic-logo').classList.add('animate');
-                document.querySelector('.tagline').classList.add('animate');
-                document.querySelector('.donation-card').classList.add('animate');
-                document.querySelector('.donation-progress').classList.add('animate');
-                document.querySelector('.donor-list').classList.add('animate');
-            }, 500);
-
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll();
-
-            // Initialize Donation UI
-            updateDonationUI();
+        /* Donor List */
+        const donorList = document.getElementById("donorList");
+        donorList.innerHTML = "";
+        donations.slice(-5).reverse().forEach(d => {
+          donorList.innerHTML += `
+            <div class="donor-item">
+              <span class="donor-name">${d.name}</span>
+              <span class="donor-amount">Rp ${d.amount.toLocaleString("id-ID")}</span>
+            </div>`;
         });
-    </script>
+
+        /* Leaderboard */
+        const leaderList = document.getElementById("leaderList");
+        leaderList.innerHTML = "";
+        let sorted = [...donations].sort((a, b) => b.amount - a.amount).slice(0, 5);
+        sorted.forEach((d, i) => {
+          leaderList.innerHTML += `
+            <li>
+              <span class="leader-name">#${i + 1} ${d.name}</span>
+              <span class="leader-amount">Rp ${d.amount.toLocaleString("id-ID")}</span>
+            </li>`;
+        });
+      }
+
+      function showPopup(msg, type = "success") {
+        popup.textContent = msg;
+        popup.className = "popup " + type;
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 3000);
+      }
+
+      document.getElementById("submitDonation").addEventListener("click", () => {
+        const name = document.getElementById("donorName").value.trim() || `Anonymous ${donations.length + 1}`;
+        const amount = parseInt(document.getElementById("donationAmount").value);
+        if (!amount || amount < 1000) {
+          showPopup("Minimum donation Rp 1.000", "error");
+          return;
+        }
+        donations.push({ name, amount, timestamp: new Date().toLocaleString() });
+        totalDonated += amount;
+        localStorage.setItem("donations", JSON.stringify(donations));
+        updateUI();
+        showPopup(`Thank you ${name} for donating Rp ${amount.toLocaleString("id-ID")}!`, "success");
+        document.getElementById("donorName").value = "";
+        document.getElementById("donationAmount").value = "";
+      });
+
+      updateUI();
+
+      /* QRIS Zoom Modal */
+      const modal = document.getElementById("qrisModal");
+      const qrisBox = document.getElementById("qrisBox");
+      const closeBtn = document.getElementById("closeModal");
+
+      qrisBox.addEventListener("click", () => { modal.style.display = "flex"; });
+      closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
+      modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+    });
+  </script>
 </body>
 </html>
