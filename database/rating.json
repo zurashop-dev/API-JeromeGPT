@@ -43,5 +43,17 @@
     "message": "Keren bangetttt",
     "rating": 5,
     "initial": "R"
+  },
+  {
+    "name": "Bapak Mulyono",
+    "email": "mulyono7@gmail.com",
+    "skills": [
+      "Mantan Presiden",
+      "PDI",
+      "Manusia Biasa"
+    ],
+    "message": "We wok de tok not only tok de tok....\nKeren banget ,,,desainnya yg bagus dan juga bekerja fiturnya.",
+    "rating": 5,
+    "initial": "B"
   }
 ]
