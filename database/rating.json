@@ -65,5 +65,17 @@
     "message": "Anake Saphiq memasak aduh CROOTT ( ˃ᯅ˂)",
     "rating": 5,
     "initial": "J"
+  },
+  {
+    "name": "Fatah Maing",
+    "email": "maing@gmail.com",
+    "skills": [
+      "Perakit PC",
+      "Pembuat Ayam",
+      "Orang Ganteng"
+    ],
+    "message": "ayam goreng dan pc",
+    "rating": 5,
+    "initial": "F"
   }
 ]
